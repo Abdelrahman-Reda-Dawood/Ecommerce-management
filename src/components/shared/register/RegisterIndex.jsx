@@ -33,7 +33,7 @@ function RegisterIndex() {
                 <div
                   className={`mx-3 rounded-full h-2 w-2 ${
                     slideIndex === currentIndex
-                      ? 'bg-white'
+                      ? 'bg-green-400'
                       : 'bg-gray-500'
                   }`}
                 />

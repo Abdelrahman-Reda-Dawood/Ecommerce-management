@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { navigationData } from '../../lib/constants/navigationData';
 
 const linkClasses =
-  'flex items-center gap-2 px-3 py-3 hover:bg-primarygreen hover:no-underline focus:bg-[#052010] active:bg-[#052010] rounded-md text-xl';
+  'flex items-center gap-2 px-3 py-3 hover:bg-primarygreen hover:no-underline rounded-md text-xl ';
 
 function SidebarLink({ item }) {
   const { pathname } = useLocation();
@@ -14,7 +14,7 @@ function SidebarLink({ item }) {
       to={item.path}
       className={classNames(
         pathname === item.path
-          ? 'text-white font-semibold'
+          ? 'text-white font-semibold bg-gradient-to-r from-[#066135] border-r-2 border-r-green-600 rounded-none'
           : 'text-gray-300',
         linkClasses
       )}

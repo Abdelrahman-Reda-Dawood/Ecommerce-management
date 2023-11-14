@@ -6,7 +6,13 @@ const width = 'w-[330px]';
 const height = 'h-[315px]';
 const zindex = 'z-10';
 
-const ProductCard = ({ buttons = true }) => {
+const ProductCard = ({
+  buttons = true,
+  title,
+  quantity,
+  ratingsAverage,
+  price,
+}) => {
   return (
     <ImageCard
       imgsrc={cardImage}
@@ -28,7 +34,6 @@ const ProductCard = ({ buttons = true }) => {
       ) : (
         <div />
       )}
-
       {/* Heart Icon */}
       <div className="absolute flex justify-center bottom-24 right-4 bg-gray-600  h-8 w-8 rounded-full">
         <button className="z-20">
@@ -51,19 +56,21 @@ const ProductCard = ({ buttons = true }) => {
       {/* Bot info */}
       <div className="absolute flex justify-between bottom-5 p-3 w-[90%] h-16 rounded-2xl bg-[#575b64] z-10">
         <div className="">
-          Nintendo Pro
+          {title}
           <div className="flex text-sm flex-nowrap">
             <p>
-              <span className="font-bold"> 1200</span>&nbsp;Sales .&nbsp;
+              <span className="font-bold"> {quantity}</span>&nbsp;Sales
+              .&nbsp;
             </p>
             <p>
-              <span className="font-bold"> 4.5</span>&nbsp;Ratings
+              <span className="font-bold"> {ratingsAverage}</span>
+              &nbsp;Ratings
             </p>
           </div>
         </div>
         <div className="flex flex-nowrap">
           <div className="w-[1px] h-auto bg-white mr-1" />
-          <p className="text-xl font-semibold self-center">$350</p>
+          <p className="text-xl font-semibold self-center">${price}</p>
         </div>
       </div>
     </ImageCard>
