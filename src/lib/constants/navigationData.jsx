@@ -1,4 +1,3 @@
-
 const icon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +19,7 @@ export const navigationData = [
   {
     title: 'Manage Orders',
     icon: icon,
-    path: '/manage-order',
+    path: '/manage-orders',
   },
   {
     title: 'Manage Products',
@@ -30,7 +29,7 @@ export const navigationData = [
   {
     title: 'Products',
     icon: icon,
-    path: '/addproducts',
+    path: '/add-product',
   },
   {
     title: 'Category',
@@ -40,31 +39,31 @@ export const navigationData = [
   {
     title: 'Subcategory',
     icon: icon,
-    path: '/subcategory',
+    path: '/sub-category',
   },
   {
     title: 'Add Brand',
     icon: icon,
-    path: '/brand',
+    path: '/add-brand',
   },
   {
-    title: 'Add Coupoun',
+    title: 'Add Coupon',
     icon: icon,
-    path: '/coupoun',
+    path: '/add-coupon',
   },
   {
     title: 'Add Shop',
     icon: icon,
-    path: '/shop',
+    path: '/add-shop',
   },
   {
     title: 'Add User ',
     icon: icon,
-    path: '/user',
+    path: '/add-user',
   },
   {
     title: 'Add Supplier ',
     icon: icon,
-    path: '/supplier',
+    path: '/add-supplier',
   },
 ];

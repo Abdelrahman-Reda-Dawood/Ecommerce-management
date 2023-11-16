@@ -8,7 +8,7 @@ const height = 'h-[160px]';
 
 const TotalUsers = () => {
   return (
-    <div className="flex gap-4 w-full ">
+    <div className="self-start grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
       <ImageCard
         bgcolor={bgcolor}
         width={width}
@@ -90,7 +90,7 @@ const TotalUsers = () => {
             />
           </svg>
         </button>
-      </ImageCard>{' '}
+      </ImageCard>
       <ImageCard
         bgcolor={bgcolor}
         width={width}

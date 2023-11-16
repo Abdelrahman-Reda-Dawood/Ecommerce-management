@@ -1,10 +1,10 @@
-import { Button } from '@material-tailwind/react';
 import axios from 'axios';
-import React, { useState } from 'react';
-
-import Input from './Input';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { Button } from '@material-tailwind/react';
+
 import { SpinnerCircularFixed } from 'spinners-react';
+import Input from './Input';
 
 export function SingupForm({ setSignup }) {
   const [loading, setLoading] = useState(false);
@@ -50,7 +50,7 @@ export function SingupForm({ setSignup }) {
       />
       <Input
         title={'Email'}
-        placeholder={'Enter your email...'}
+        placeholder={'YourEmail@email.com'}
         type={'email'}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -69,14 +69,16 @@ export function SingupForm({ setSignup }) {
         value={passwordConfirm}
         onChange={(e) => setPasswordConfirm(e.target.value)}
       />
-      <button className="flex justify-center items-center mt-5 xl:m-6 w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg bg-green-700 rounded-lg">
+      <button
+        className="flex justify-center items-center mt-5 xl:m-6 w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg bg-green-700 rounded-lg"
+      >
         {loading ? (
           <SpinnerCircularFixed
             size={40}
             thickness={100}
             speed={120}
             color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, 0.44)"
+            secondaryColor="rgba(255, 255, 255, .99)"
           />
         ) : (
           'Sign Up'
@@ -129,7 +131,7 @@ export function SigninForm({ setSignup }) {
     >
       <Input
         title={' Email'}
-        placeholder={'Enter your email...'}
+        placeholder={'YourEmail@email.com'}
         type={'email'}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -152,7 +154,7 @@ export function SigninForm({ setSignup }) {
             thickness={100}
             speed={120}
             color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, 0.44)"
+            secondaryColor="rgba(255, 255, 255, 0.9)"
           />
         ) : (
           'Proceed Order'

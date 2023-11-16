@@ -44,11 +44,9 @@ const TABLE_ROWS = [
 
 const RecentOrders = () => {
   return (
-    <Card className="flex-1 w-full p-4 border border-stone-800 rounded-2xl bg-[#292927] text-white">
-      <h1 className="px-3 pb-2 font-semibold text-xl">
-        Recent Orders
-      </h1>
-      <table className="text-left">
+    <Card className="flex-1 font-sans p-4 rounded-2xl bg-neutral-300 dark:bg-[#292927] text-black dark:text-white">
+      <h1 className="px-3 pb-2 font-semibold text-xl">Recent Orders</h1>
+      <table className="text-left ">
         <thead>
           <tr>
             {TABLE_HEAD.map((head) => (
@@ -59,7 +57,7 @@ const RecentOrders = () => {
                 <Typography
                   variant="small"
                   color="blue-gray"
-                  className="font-normal text-white leading-none opacity-70"
+                  className="font-normal text-black dark:text-white leading-none opacity-70"
                 >
                   {head}
                 </Typography>
@@ -78,22 +76,34 @@ const RecentOrders = () => {
               return (
                 <tr key={orderid}>
                   <td className={classes}>
-                    <Typography variant="small" color="blue-gray">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                    >
                       {orderid}
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" color="blue-gray">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                    >
                       {name}
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" color="blue-gray">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                    >
                       {date}
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography variant="small" color="blue-gray">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                    >
                       {price}
                     </Typography>
                   </td>

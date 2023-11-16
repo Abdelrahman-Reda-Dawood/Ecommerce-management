@@ -7,18 +7,14 @@ import CommonSalesCard from '../components/dashboard/CommonSales';
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col gap-4">
       <TotalUsersCard />
-      <div className="h-fit grid grid-cols-2 mt-5">
-        <div className="grid grid-rows-2 ">
-          <div className="flex flex-col w-full space-y-10 ">
-            <RevenueReport />
-            <RecentOrders />
-          </div>
+      <div className="flex flex-row gap-8">
+        <div className='flex flex-col gap-5'>
+        <RevenueReport />
+        <RecentOrders />
         </div>
-        <div className="flex justify-end flex-1 w-full">
-          <CommonSalesCard />
-        </div>
+        <CommonSalesCard />
       </div>
     </div>
   );

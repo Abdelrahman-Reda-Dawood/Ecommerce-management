@@ -58,7 +58,7 @@ const LineChart = () => {
   };
 
   return (
-    <div className=" h-[350px] w-[800px]">
+    <div className=" 2xl:h-[350px] 2xl:w-[800px] xl:h-[300px] xl:w-[700px] lg:h-[250px] lg:w-[600px] md:h-[200px] md:w-[500px] sm:h-[150px] sm:w-[500px]">
       <Line data={data} options={options} />
     </div>
   );

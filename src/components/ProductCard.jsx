@@ -22,7 +22,7 @@ const ProductCard = ({
       zindex={zindex}
     >
       {/* Edit - Delete */}
-      {buttons ? (
+      {buttons && (
         <div className="flex justify-between font-semibold text-lg ">
           <button className="z-20">
             <p>Edit</p>
@@ -31,8 +31,6 @@ const ProductCard = ({
             <p className="text-warning">Delete</p>
           </button>
         </div>
-      ) : (
-        <div />
       )}
       {/* Heart Icon */}
       <div className="absolute flex justify-center bottom-24 right-4 bg-gray-600  h-8 w-8 rounded-full">

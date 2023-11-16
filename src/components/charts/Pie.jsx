@@ -31,7 +31,12 @@ export default function Pie() {
 
   return (
     <div className="p-5">
-      <canvas ref={chartRef} className="w52 h-48" />
+      <canvas
+        
+        height={20}
+        width={20}
+        ref={chartRef}
+      />
       <div className="mr-2 mt-2 ">
         <div className=" flex justify-start items-center content-center">
           <div className="w-7 h-3 bg-[#FFE500] border rounded-full mr-3" />
