@@ -7,7 +7,9 @@ const ImageUploader = () => {
 
   return (
     <>
-      <span className="pt-4 flex font-semibold text-2xl">Upload images</span>
+      <span className="pt-4 flex font-semibold text-2xl text-black dark:text-white">
+        Upload images
+      </span>
       <form
         className="flex flex-col justify-center items-start p-3 h-32 my-2 w-5/6
         border-2 rounded-md border-dashed border-neutral-400 cursor-pointer"

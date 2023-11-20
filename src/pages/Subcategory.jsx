@@ -1,37 +1,91 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import Input from '../components/Input';
+import { SpinnerCircularFixed } from 'spinners-react';
 
 const Subcategory = () => {
-  return (
-    <div className="text-white ">
-      <form2 className="flex flex-col gap-2">
-        <label className="text-white flex flex-row  ml-7">
-          Category Name
-        </label>
-        <input
-          type="text"
-          className=" flex flex-row w-3/4 bg-[#0e0e0ef8] border-2 text-white ml-7 "
-          required
-        />
+  const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState('');
+  const [name, setName] = useState('');
 
-        <label className="text-white ml-7"> Product Category</label>
-        <select className="w-3/4 bg-[#0e0e0ef8] border-2 text-white ml-7">
+  useEffect(() => {
+    const fetchCategories = async () =>
+      fetch(
+        'https://shopping-api-7cy0.onrender.com/api/subcategories'
+      ).then((response) => {
+        response.json().then((categories) => {
+          setCategories(categories);
+        });
+      });
+    fetchCategories();
+  }, []);
+
+  const createSubcategory = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios.post(
+        'https://shopping-api-7cy0.onrender.com/api/subcategories',
+        {
+          name,
+          category,
+        }
+      );
+      toast.success('Category added successfully');
+      setLoading(false);
+    } catch (error) {
+      toast.error('Error Creating Subcategory');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={createSubcategory}
+      className="m-7 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
+    >
+      <Input
+        title={'Subcategory Name'}
+        placeholder={'Enter Subcategory Name...'}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <label>Product Category</label>
+      <select
+        className="text-[16px] border w-[400px] xl:h-12 h-10 border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
+      >
+        {Object.values(categories).map((item, index) => (
           <option
-            value="mariro"
-            className="text-white"
+            key={index}
+            value={categories.data[index].id}
+            onChange={(e) => setCategory(e.target.value)}
           >
-            {' '}
-            mario
+            {categories.data[index] && categories.data[index].name}
           </option>
-          <option
-            value="johnny"
-            className="text-white"
-          >
-            {' '}
-            johnny
-          </option>
-        </select>
-      </form2>
-    </div>
+        ))}
+      </select>
+      <button
+        disabled={loading}
+        size="lg"
+        color="blue-gray"
+        className="flex justify-center items-center my-10 w-[400px] h-10 xl:h-12 text-lg text-white bg-green-700 rounded-lg"
+      >
+        {loading ? (
+          <SpinnerCircularFixed
+            size={40}
+            thickness={100}
+            speed={120}
+            color="#36ad47"
+            secondaryColor="rgba(255, 255, 255, 0.9)"
+          />
+        ) : (
+          'Create'
+        )}
+      </button>
+    </form>
   );
 };
 

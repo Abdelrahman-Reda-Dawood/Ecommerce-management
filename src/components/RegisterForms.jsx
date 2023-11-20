@@ -1,7 +1,8 @@
+import { Button } from '@material-tailwind/react';
 import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Button } from '@material-tailwind/react';
+import { useNavigate } from 'react-router-dom';
 
 import { SpinnerCircularFixed } from 'spinners-react';
 import Input from './Input';
@@ -19,7 +20,7 @@ export function SingupForm({ setSignup }) {
     setLoading(true);
     try {
       await axios.post(
-        'https://shopping-app-vdmq.onrender.com/api/auth/signup',
+        'https://shopping-api-7cy0.onrender.com/api/auth/signup',
         {
           name,
           email,
@@ -70,7 +71,8 @@ export function SingupForm({ setSignup }) {
         onChange={(e) => setPasswordConfirm(e.target.value)}
       />
       <button
-        className="flex justify-center items-center mt-5 xl:m-6 w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg bg-green-700 rounded-lg"
+        disabled={loading}
+        className="flex justify-center items-center mt-5 xl:m-6 w-[400px] h-10 xl:h-12 p-3 mx-4 text-white text-lg bg-green-700 rounded-lg"
       >
         {loading ? (
           <SpinnerCircularFixed
@@ -89,7 +91,7 @@ export function SingupForm({ setSignup }) {
         <Button
           size="lg"
           variant="gradient"
-          className="flex justify-center h-10 p-3 bg-neutral-600 items-center "
+          className="flex justify-center h-10 p-3 bg-neutral-600 items-center"
           onClick={() => setSignup(false)}
         >
           Log in
@@ -100,6 +102,8 @@ export function SingupForm({ setSignup }) {
 }
 
 export function SigninForm({ setSignup }) {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
 
   const [email, setEmail] = useState('');
@@ -111,13 +115,14 @@ export function SigninForm({ setSignup }) {
     try {
       setLoading(true);
       await axios.post(
-        'https://shopping-app-vdmq.onrender.com/api/auth/login',
+        'https://shopping-api-7cy0.onrender.com/api/auth/login',
         {
           email,
           password,
         }
       );
       toast.success('Login successful');
+      navigate('/');
     } catch (error) {
       toast.error('Login Failed');
     } finally {
@@ -144,9 +149,10 @@ export function SigninForm({ setSignup }) {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button
+        disabled={loading}
         size="lg"
         color="blue-gray"
-        className="flex justify-center items-center my-5  w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg bg-green-700 rounded-lg"
+        className="flex justify-center items-center my-5  w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg text-white bg-green-700 rounded-lg"
       >
         {loading ? (
           <SpinnerCircularFixed

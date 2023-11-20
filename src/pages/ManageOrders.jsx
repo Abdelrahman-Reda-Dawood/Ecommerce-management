@@ -5,11 +5,8 @@ import OrderCard from '../components/OrderCard';
 const ManageOrders = () => {
   return (
     <>
-      <div className="m-5 text-white">
-        <div className="">
-          <OrderCard />
-        </div>
-        <div className="">
+      <div className="m-5 text-black dark:text-white">
+        <div>
           <OrderCard />
         </div>
       </div>

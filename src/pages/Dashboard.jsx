@@ -9,10 +9,10 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col gap-4">
       <TotalUsersCard />
-      <div className="flex flex-row gap-8">
-        <div className='flex flex-col gap-5'>
-        <RevenueReport />
-        <RecentOrders />
+      <div className="flex 2xl:flex-row xl:flex-row md:flex-col gap-8">
+        <div className="flex flex-col gap-5">
+          <RevenueReport />
+          <RecentOrders />
         </div>
         <CommonSalesCard />
       </div>

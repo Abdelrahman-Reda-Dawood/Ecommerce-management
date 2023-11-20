@@ -13,7 +13,7 @@ export default function Dropdown({ title }) {
     <div className="relative flex flex-col items-center w-fit h-[90px] rounded-lg ">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center justify-between gap-3 bg-[#171716] px-4 py-2 font-bold text-lg rounded-lg border-4 border-transparent focus:border-white duration-300 active:text-white"
+        className="flex items-center justify-between gap-3 bg-neutral-200 dark:bg-[#171716] px-4 py-2 font-bold text-lg rounded-lg border-4 border-transparent focus:border-white duration-300 active:text-white"
       >
         {menuTitle}
         {!isOpen ? (
@@ -49,11 +49,11 @@ export default function Dropdown({ title }) {
         )}
       </button>
       {isOpen && (
-        <div className="bg-[#171716] absolute top-14 flex flex-col text-center rounded-lg p-2 ">
+        <div className="bg-neutral-200 dark:bg-[#171716] absolute top-14 flex flex-col text-center rounded-lg p-2 ">
           {title.map((item, i) => (
             <div
               key={i}
-              className="hover:bg-neutral-600 cursor-pointer rounded-r-lg border-l-transparent hover:border-l-white border-l-4"
+              className="hover:bg-neutral-300 dark:hover:bg-neutral-600 cursor-pointer rounded-r-lg border-l-transparent hover:border-l-white border-l-4"
             >
               <h3
                 onClick={() => updateMenu({ item })}

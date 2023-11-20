@@ -15,7 +15,11 @@ function RegisterIndex() {
 
   return (
     <div className="flex flex-col overflow-hidden">
-      <img src={slides[currentIndex]} alt="" className="w-screen" />
+      <img
+        src={slides[currentIndex]}
+        alt=""
+        className="w-screen"
+      />
       <div className="flex flex-col absolute bottom-9 self-center">
         <div className="flex flex-col justify-center  items-center  text-white ">
           <h1 className="font-bold text-3xl">Easy payment process</h1>

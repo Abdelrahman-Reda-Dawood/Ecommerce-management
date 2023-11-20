@@ -32,9 +32,9 @@ export const navigationData = [
     path: '/add-product',
   },
   {
-    title: 'Category',
+    title: 'Add Category',
     icon: icon,
-    path: '/category',
+    path: '/add-category',
   },
   {
     title: 'Subcategory',

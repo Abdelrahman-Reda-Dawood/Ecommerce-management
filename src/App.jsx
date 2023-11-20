@@ -11,19 +11,20 @@ import ManageOrders from './pages/ManageOrders';
 import ManageProduct from './pages/ManageProduct';
 import OrderDetails from './pages/OrderDetails';
 import AddProducts from './pages/AddProducts';
-import Category from './pages/Category';
+import AddCategory from './pages/AddCategory';
 import Subcategory from './pages/Subcategory';
 import AddBrand from './pages/AddBrand';
 import AddCoupon from './pages/AddCoupon';
 import AddShop from './pages/AddShop';
 import AddUser from './pages/AddUser';
 import AddSupplier from './pages/AddSupplier';
-import {  ThemeContextProvider } from './context/ThemeContext';
+import { ThemeContextProvider } from './context/ThemeContext';
 
 function App() {
   return (
     <ThemeContextProvider>
       <BrowserRouter>
+        <Toaster />
         <Routes>
           <Route
             path="/"
@@ -50,8 +51,8 @@ function App() {
               element={<AddProducts />}
             />
             <Route
-              path="/category"
-              element={<Category />}
+              path="/add-category"
+              element={<AddCategory />}
             />
             <Route
               path="/sub-category"
@@ -85,7 +86,6 @@ function App() {
             <Route />
           </Route>
         </Routes>
-        <Toaster position="top-center" />
       </BrowserRouter>
     </ThemeContextProvider>
   );

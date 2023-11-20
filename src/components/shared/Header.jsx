@@ -1,29 +1,22 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
-
-const Header = () => {
-  const [darkMode, setDarkMode] = useContext(ThemeContext);
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+const Header = ({ theme, toggleDarkMode }) => {
   return (
-    <div className={`${darkMode && 'dark'}`}>
+    <div className={`${theme}`}>
       <main className="h-20 p-5 flex 2xl:justify-between lg:justify-start items-center bg-neutral-300 dark:bg-[#292927] dark:text-white text-3xl">
         Good Morning, USER_NAME
         <button
           onClick={toggleDarkMode}
           className={`m-4 w-9 h-9 justify-center items-center flex rounded-full ${
-            darkMode ? 'bg-orange-400' : 'bg-gray-800'
+            theme === 'dark' ? 'bg-orange-400' : 'bg-gray-800'
           }`}
         >
-          {!darkMode ? (
+          {theme === 'light' ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6 text-white"
+              stroke="white"
+              class="w-6 h-6"
             >
               <path
                 stroke-linecap="round"
@@ -37,7 +30,7 @@ const Header = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="currentColor"
+              stroke="white"
               class="w-6 h-6"
             >
               <path

@@ -1,21 +1,22 @@
 import cardImage from '../assets/Image1.png';
 import ImageCard from './ImageCard';
 
-const bgcolor = 'bg-[#343432]';
-const width = 'w-[330px]';
+const bgcolor = 'bg-neutral-200 dark:bg-[#343432]';
+const width = '2xl:w-[330px] lg:w-[260px] md:w-[160px]';
 const height = 'h-[315px]';
 const zindex = 'z-10';
 
 const ProductCard = ({
   buttons = true,
   title,
+  imageCover,
   quantity,
   ratingsAverage,
   price,
 }) => {
   return (
     <ImageCard
-      imgsrc={cardImage}
+      imgsrc={imageCover}
       bgcolor={bgcolor}
       width={width}
       height={height}
@@ -23,7 +24,7 @@ const ProductCard = ({
     >
       {/* Edit - Delete */}
       {buttons && (
-        <div className="flex justify-between font-semibold text-lg ">
+        <div className="flex justify-between font-semibold text-lg text-black dark:text-white ">
           <button className="z-20">
             <p>Edit</p>
           </button>
@@ -33,7 +34,7 @@ const ProductCard = ({
         </div>
       )}
       {/* Heart Icon */}
-      <div className="absolute flex justify-center bottom-24 right-4 bg-gray-600  h-8 w-8 rounded-full">
+      <div className="absolute flex justify-center bottom-24 right-4 bg-neutral-400 dark:bg-neutral-500  h-8 w-8 rounded-full">
         <button className="z-20">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +53,8 @@ const ProductCard = ({
         </button>
       </div>
       {/* Bot info */}
-      <div className="absolute flex justify-between bottom-5 p-3 w-[90%] h-16 rounded-2xl bg-[#575b64] z-10">
-        <div className="">
+      <div className="absolute flex justify-between bottom-5 p-3 w-[90%] h-16 rounded-2xl text-black dark:text-white bg-neutral-400 dark:bg-neutral-500 z-10">
+        <>
           {title}
           <div className="flex text-sm flex-nowrap">
             <p>
@@ -65,9 +66,9 @@ const ProductCard = ({
               &nbsp;Ratings
             </p>
           </div>
-        </div>
+        </>
         <div className="flex flex-nowrap">
-          <div className="w-[1px] h-auto bg-white mr-1" />
+          <div className="w-[1px] h-auto bg-white dark:bg-neutral-900 mr-1" />
           <p className="text-xl font-semibold self-center">${price}</p>
         </div>
       </div>

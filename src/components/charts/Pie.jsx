@@ -30,9 +30,8 @@ export default function Pie() {
   }, []);
 
   return (
-    <div className="p-5">
+    <div className="p-5 ">
       <canvas
-        
         height={20}
         width={20}
         ref={chartRef}

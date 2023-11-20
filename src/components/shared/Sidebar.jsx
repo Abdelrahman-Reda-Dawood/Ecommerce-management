@@ -1,8 +1,6 @@
-import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { ThemeContext } from '../../context/ThemeContext';
 import { navigationData } from '../../lib/constants/navigationData';
 
 const linkClasses =

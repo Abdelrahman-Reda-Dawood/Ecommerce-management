@@ -13,7 +13,7 @@ const OrderCard = ({
   DeliveryStatus,
 }) => {
   return (
-    <div className="2xl:w-[900px] w-fit h-fit p-5 my-5 rounded-lg bg-[#292927] text-2xl">
+    <div className="2xl:w-[900px] w-fit h-fit p-5 my-5 rounded-lg bg-neutral-300 text-black dark:bg-[#292927] dark:text-white text-2xl">
       <Link to={'/manage-orders/order-details'}>
         <div className="flex justify-between mb-2">
           <p>Order number #1</p>
