@@ -29,7 +29,7 @@ function Layout() {
 
   return (
     <div className={`${theme}`}>
-      <div className="flex flex-row font-serif bg-neutral-100 dark:bg-[#171716] h-screen w-screen overflow-hidden">
+      <div className="flex flex-row font-serif bg-stone-200 dark:bg-[#171716] h-screen w-screen overflow-hidden">
         <Sidebar />
         <div className="flex flex-col flex-1">
           <Header

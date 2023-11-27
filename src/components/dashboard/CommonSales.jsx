@@ -5,7 +5,7 @@ import Pie from '../charts/Pie';
 
 const CommonSales = () => {
   return (
-    <div className="flex 2xl:flex-col xl:flex-col  h-fit w-fit  gap-3 rounded-2xl text:black dark:text-white text-lg bg-neutral-300 dark:bg-[#292927]">
+    <div className="flex 2xl:flex-col xl:flex-col  h-fit w-fit  gap-3 rounded-2xl text:black dark:text-white text-lg bg-neutral-300 dark:bg-darkbg">
       {/* Top Section */}
       <div>
         <h1 className="px-3 pt-3 font-semibold text-xl">

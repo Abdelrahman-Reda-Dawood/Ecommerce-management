@@ -41,10 +41,8 @@ const AddCategory = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-
       <button
         disabled={loading}
-        size="lg"
         color="blue-gray"
         className="flex justify-center items-center my-5  w-[400px] h-10 xl:h-12  text-lg text-white bg-green-700 rounded-lg"
       >

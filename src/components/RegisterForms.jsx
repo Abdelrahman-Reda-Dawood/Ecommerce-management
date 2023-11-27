@@ -91,7 +91,7 @@ export function SingupForm({ setSignup }) {
         <Button
           size="lg"
           variant="gradient"
-          className="flex justify-center h-10 p-3 bg-neutral-600 items-center"
+          className="flex justify-center h-10 p-3 bg-neutral-600 items-center "
           onClick={() => setSignup(false)}
         >
           Log in
@@ -150,7 +150,6 @@ export function SigninForm({ setSignup }) {
       />
       <button
         disabled={loading}
-        size="lg"
         color="blue-gray"
         className="flex justify-center items-center my-5  w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg text-white bg-green-700 rounded-lg"
       >

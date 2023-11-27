@@ -5,7 +5,7 @@ import { Button } from '@material-tailwind/react';
 
 const ClientDetailsCard = () => {
   return (
-    <div className="2xl:w-[900px] w-fit h-[400px] p-5 my-5 rounded-lg bg-neutral-300 text-black dark:bg-[#292927] dark:text-white text-2xl">
+    <div className="2xl:w-[900px] w-fit h-[400px] p-5 my-5 rounded-lg bg-neutral-300 text-black dark:bg-darkbg dark:text-white text-2xl">
       <h1 className="text-3xl mb-5">Client Details</h1>
       <div className=" space-y-3 mb-2">
         <p>

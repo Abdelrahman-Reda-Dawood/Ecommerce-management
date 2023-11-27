@@ -4,21 +4,23 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { ThemeContextProvider } from './context/ThemeContext';
+import RegisterLayout from './components/register/RegisterLayout';
 import Layout from './components/shared/Layout';
-import RegisterLayout from './components/shared/register/RegisterLayout';
+import AddBrand from './pages/AddBrand';
+import AddCategory from './pages/AddCategory';
+import AddCoupon from './pages/AddCoupon';
+import AddProducts from './pages/AddProducts';
+import AddShop from './pages/AddShop';
+import AddSupplier from './pages/AddSupplier';
+import AddUser from './pages/AddUser';
 import Dashboard from './pages/Dashboard';
 import ManageOrders from './pages/ManageOrders';
 import ManageProduct from './pages/ManageProduct';
 import OrderDetails from './pages/OrderDetails';
-import AddProducts from './pages/AddProducts';
-import AddCategory from './pages/AddCategory';
 import Subcategory from './pages/Subcategory';
-import AddBrand from './pages/AddBrand';
-import AddCoupon from './pages/AddCoupon';
-import AddShop from './pages/AddShop';
-import AddUser from './pages/AddUser';
-import AddSupplier from './pages/AddSupplier';
-import { ThemeContextProvider } from './context/ThemeContext';
+import POS from './pages/POS';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -82,9 +84,15 @@ function App() {
           <Route
             path="/register"
             element={<RegisterLayout />}
-          >
-            <Route />
-          </Route>
+          />
+          <Route
+            path="/pos"
+            element={<POS />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
         </Routes>
       </BrowserRouter>
     </ThemeContextProvider>

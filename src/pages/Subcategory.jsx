@@ -7,20 +7,29 @@ import { SpinnerCircularFixed } from 'spinners-react';
 const Subcategory = () => {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [name, setName] = useState('');
 
   useEffect(() => {
-    const fetchCategories = async () =>
-      fetch(
-        'https://shopping-api-7cy0.onrender.com/api/subcategories'
-      ).then((response) => {
-        response.json().then((categories) => {
-          setCategories(categories);
-        });
-      });
+    const fetchCategories = async () => {
+      const { data } = await axios.get(
+        'https://shopping-api-7cy0.onrender.com/api/categories'
+      );
+      setCategories(data);
+    };
     fetchCategories();
   }, []);
+
+  const categoriesOptions =
+    categories.data &&
+    Object.values(categories.data).map((item, index) => (
+      <option
+        key={index}
+        value={categories.data[index]._id}
+      >
+        {categories.data[index].name}
+      </option>
+    ));
 
   const createSubcategory = async (e) => {
     e.preventDefault();
@@ -30,7 +39,7 @@ const Subcategory = () => {
         'https://shopping-api-7cy0.onrender.com/api/subcategories',
         {
           name,
-          category,
+          category: categoryId,
         }
       );
       toast.success('Category added successfully');
@@ -55,23 +64,23 @@ const Subcategory = () => {
       />
       <label>Product Category</label>
       <select
+        onChange={(e) => setCategoryId(e.target.value)}
         className="text-[16px] border w-[400px] xl:h-12 h-10 border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
       >
-        {Object.values(categories).map((item, index) => (
-          <option
-            key={index}
-            value={categories.data[index].id}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            {categories.data[index] && categories.data[index].name}
-          </option>
-        ))}
+        <option
+          disabled
+          selected
+          className="font-bold text-black"
+        >
+          Please select a category
+        </option>
+        {categoriesOptions}
       </select>
+
       <button
         disabled={loading}
-        size="lg"
         color="blue-gray"
-        className="flex justify-center items-center my-10 w-[400px] h-10 xl:h-12 text-lg text-white bg-green-700 rounded-lg"
+        className="flex justify-center items-center my-5 w-[400px] h-10 xl:h-12 text-lg text-white bg-green-700 rounded-lg"
       >
         {loading ? (
           <SpinnerCircularFixed
