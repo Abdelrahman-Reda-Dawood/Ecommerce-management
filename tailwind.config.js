@@ -11,8 +11,8 @@ module.exports = {
       colors: {
         warning: '#A33232',
         primarygreen: '#066135',
+        darkbg:'#292927',
         lightbg: '#d4d4d4',
-        darkbg: '#292927',
       },
     },
     screens: {

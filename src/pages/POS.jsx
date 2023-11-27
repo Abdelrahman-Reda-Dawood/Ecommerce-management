@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
 
 import POSSidebar from '../components/POS/POSSidebar';
 import POSHeader from '../components/POS/POSHeader';
