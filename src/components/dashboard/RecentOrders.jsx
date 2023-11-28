@@ -44,7 +44,7 @@ const TABLE_ROWS = [
 
 const RecentOrders = () => {
   return (
-    <Card className="flex-1 font-sans p-4 rounded-2xl bg-neutral-300 dark:bg-darkbg text-black dark:text-white">
+    <Card className="flex-1 font-sans p-4 rounded-2xl bg-neutral-300 dark:bg-darkbg text-black dark:text-white animate-fadeup">
       <h1 className="px-3 pb-2 font-semibold text-xl">Recent Orders</h1>
       <table className="text-left ">
         <thead>

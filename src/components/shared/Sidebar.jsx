@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { navigationData } from '../../lib/constants/navigationData';
 
 const linkClasses =
-  'flex items-center gap-2 px-3 py-3 hover:bg-primarygreen hover:text-white rounded-md text-xl font-semibold';
+  'flex items-center gap-2 px-3 py-3 hover:bg-primarygreen hover:text-white 2xl:text-xl font-semibold animate-faderight';
 
 function SidebarLink({ item }) {
   const { pathname } = useLocation();
@@ -13,7 +13,7 @@ function SidebarLink({ item }) {
       to={item.path}
       className={classNames(
         pathname === item.path
-          ? 'text-white dark:text-white bg-gradient-to-r from-[#066135] border-r-2 border-r-green-600 rounded-none'
+          ? 'text-white dark:text-white bg-gradient-to-r from-[#066135] border-r-2 border-r-green-600'
           : 'dark:text-gray-300 text-black',
         linkClasses
       )}
@@ -28,8 +28,8 @@ export default function Sidebar() {
   const { pathname } = useLocation();
 
   return (
-    <div className="flex flex-col lg:w-72 h-screen w-64 p-3 text-white bg-neutral-300 dark:bg-darkbg">
-      <div className="px-1 py-3">
+    <div className="flex flex-col w-fit h-screen p-3 text-white bg-neutral-300 dark:bg-darkbg">
+      <div className="px-1 py-3 animate-faderight">
         <Link
           to={'/'}
           className={`text-4xl font-bold  ${
@@ -41,7 +41,7 @@ export default function Sidebar() {
           SPRINT
         </Link>
       </div>
-      <div className="2xl:py-8 flex flex-1 flex-col gap-0.5 ">
+      <div className="flex flex-1 flex-col 2xl:py-8 lg:py-6 gap-0.5 ">
         {navigationData.map((item) => (
           <SidebarLink
             key={item.title}

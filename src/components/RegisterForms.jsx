@@ -40,7 +40,7 @@ export function SingupForm({ setSignup }) {
   return (
     <form
       onSubmit={signupUser}
-      className="flex flex-col items-center gap-6 my-2 xl:my-6"
+      className="flex flex-col items-center gap-6 my-2 xl:my-6 animate-fadedown"
     >
       <Input
         title={'Name'}
@@ -72,7 +72,7 @@ export function SingupForm({ setSignup }) {
       />
       <button
         disabled={loading}
-        className="flex justify-center items-center mt-5 xl:m-6 w-[400px] h-10 xl:h-12 p-3 mx-4 text-white text-lg bg-green-700 rounded-lg"
+        className="flex justify-center items-center mt-5 xl:m-6 2xl:w-[400px] lg:w-[300px] h-10 xl:h-12 p-3 mx-4 text-white text-lg bg-green-700 rounded-lg"
       >
         {loading ? (
           <SpinnerCircularFixed
@@ -132,7 +132,7 @@ export function SigninForm({ setSignup }) {
   return (
     <form
       onSubmit={loginUser}
-      className="flex flex-col items-center gap-6 my-2 xl:my-6"
+      className="flex flex-col items-center gap-6 my-2 xl:my-6 animate-fadeup"
     >
       <Input
         title={' Email'}
@@ -151,7 +151,7 @@ export function SigninForm({ setSignup }) {
       <button
         disabled={loading}
         color="blue-gray"
-        className="flex justify-center items-center my-5  w-[400px] h-10 xl:h-12 p-3 mx-4 text-lg text-white bg-green-700 rounded-lg"
+        className="flex justify-center items-center my-5 2xl:w-[400px] lg:w-[300px] h-10 xl:h-12 p-3 mx-4 text-lg text-white bg-green-700 rounded-lg"
       >
         {loading ? (
           <SpinnerCircularFixed

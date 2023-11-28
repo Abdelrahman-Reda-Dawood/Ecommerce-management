@@ -14,10 +14,10 @@ function RegisterIndex() {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col overflow-hidden animate-zoomin">
       <img
         src={slides[currentIndex]}
-        alt=""
+        alt="Images"
         className="w-screen"
       />
       <div className="flex flex-col absolute bottom-9 self-center">
@@ -37,7 +37,7 @@ function RegisterIndex() {
                 <div
                   className={`mx-3 rounded-full h-2 w-2 ${
                     slideIndex === currentIndex
-                      ? 'bg-green-400'
+                      ? 'bg-green-400 animate-bounce'
                       : 'bg-gray-500'
                   }`}
                 />

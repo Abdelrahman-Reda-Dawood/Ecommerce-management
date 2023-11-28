@@ -3,6 +3,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { SpinnerCircularFixed } from 'spinners-react';
 import Input from '../components/Input';
+import CreateButton from '../components/CreateButton';
 
 const AddCategory = () => {
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ const AddCategory = () => {
 
   return (
     <form
-      className="m-7 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
+      className="m-7 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white animate-fadeup"
       onSubmit={createCategory}
     >
       {/* <ImageUploader /> */}
@@ -41,23 +42,7 @@ const AddCategory = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <button
-        disabled={loading}
-        color="blue-gray"
-        className="flex justify-center items-center my-5  w-[400px] h-10 xl:h-12  text-lg text-white bg-green-700 rounded-lg"
-      >
-        {loading ? (
-          <SpinnerCircularFixed
-            size={40}
-            thickness={100}
-            speed={120}
-            color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, 0.9)"
-          />
-        ) : (
-          'Create'
-        )}
-      </button>
+      <CreateButton loading={loading} />
     </form>
   );
 };

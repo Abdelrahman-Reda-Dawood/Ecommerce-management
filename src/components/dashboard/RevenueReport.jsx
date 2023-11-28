@@ -4,7 +4,7 @@ import LineChart from '../../components/charts/LineChart';
 
 const RevenueReport = () => {
   return (
-    <div className="text:balck dark:text-white font-semibold ">
+    <div className="text:balck dark:text-white font-semibold animate-fadeup ">
       <h1 className="px-3 pt-3 text-xl">Revenue report</h1>
       <div className="flex justify-center gap-5">
         <div className="items-center">

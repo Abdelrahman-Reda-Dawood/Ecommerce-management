@@ -8,7 +8,7 @@ const height = 'h-[160px]';
 
 const TotalUsers = () => {
   return (
-    <div className="self-start grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
+    <div className="self-start gap-4 grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 animate-fadedown ">
       <ImageCard
         bgcolor={bgcolor}
         width={width}

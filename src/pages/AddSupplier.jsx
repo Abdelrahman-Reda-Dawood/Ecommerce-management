@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { SpinnerCircularFixed } from 'spinners-react';
 
 import Input from '../components/Input';
+import CreateButton from '../components/CreateButton';
 
 const AddSupplier = () => {
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ const AddSupplier = () => {
   return (
     <form
       onSubmit={createSupplier}
-      className="m-7 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
+      className="m-7 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white animate-fadeup"
     >
       <Input
         title={'Name'}
@@ -65,23 +65,7 @@ const AddSupplier = () => {
         onChange={(e) => setNetProfit(e.target.value)}
         placeholder={'Enter net Profit...'}
       />
-      <button
-        disabled={loading}
-        color="blue-gray"
-        className="flex justify-center items-center my-5 w-[400px] h-10 xl:h-12 text-lg text-white bg-green-700 rounded-lg"
-      >
-        {loading ? (
-          <SpinnerCircularFixed
-            size={35}
-            thickness={100}
-            speed={120}
-            color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, 0.9)"
-          />
-        ) : (
-          'Create'
-        )}
-      </button>
+      <CreateButton loading={loading} />
     </form>
   );
 };

@@ -1,7 +1,7 @@
 import cardImage from '../assets/Image1.png';
 import ImageCard from './ImageCard';
 
-const bgcolor = 'bg-neutral-200 dark:bg-[#343432]';
+const bgcolor = 'bg-neutral-200 dark:bg-[#343434]';
 const width = '2xl:w-[330px] lg:w-[260px] md:w-[160px]';
 const height = 'h-[315px]';
 const zindex = 'z-10';

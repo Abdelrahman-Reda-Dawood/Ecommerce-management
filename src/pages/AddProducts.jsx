@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { SpinnerCircularFixed } from 'spinners-react';
 import Input from '../components/Input';
 import ImageUploader from '../components/ImageUploader';
+import CreateButton from '../components/CreateButton';
 
 const AddProducts = () => {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
-  const [describtion, setDescribtion] = useState('');
+  const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
 
@@ -48,6 +48,7 @@ const AddProducts = () => {
     categories.data &&
     Object.values(categories.data).map((item, index) => (
       <option
+        className="font-semibold "
         key={index}
         value={categories.data[index]._id}
       >
@@ -59,6 +60,7 @@ const AddProducts = () => {
     subCategories.data &&
     Object.values(subCategories.data).map((item, index) => (
       <option
+        className="font-semibold "
         key={index}
         value={subCategories.data[index]._id}
       >
@@ -70,6 +72,7 @@ const AddProducts = () => {
     brands.data &&
     Object.values(brands.data).map((item, index) => (
       <option
+        className="font-semibold "
         key={index}
         value={brands.data[index]._id}
       >
@@ -87,7 +90,7 @@ const AddProducts = () => {
         {
           title: name,
           price,
-          describtion,
+          description,
         }
       );
       toast.success('Product added successfully');
@@ -104,7 +107,7 @@ const AddProducts = () => {
     >
       <ImageUploader />
 
-      <div className="flex 2xl:flex-row justify-evenly sm:flex-col">
+      <div className="flex 2xl:flex-row justify-evenly sm:flex-col animate-fadeup">
         <div className="flex flex-col gap-6">
           <Input
             title={'Product Name'}
@@ -112,11 +115,13 @@ const AddProducts = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <Input
-            title={'Product Description'}
-            placeholder={'Enter Product description'}
-            value={describtion}
-            onChange={(e) => setDescribtion(e.target.value)}
+          <h3>Shop Description</h3>
+          <textarea
+            required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter shop description..."
+            className="text-sm border 2xl:w-[400px] lg:w-[300px] md:w-[300px] h-12 p-3 border-green-400 focus:border-white  pl-3 bg-neutral-100 dark:bg-neutral-600 rounded-lg"
           />
           <Input
             title={'Product Price'}
@@ -125,9 +130,9 @@ const AddProducts = () => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="mt-3 flex flex-col gap-4">
           <label>Product Category</label>
-          <select className="text-[16px] border w-[400px] xl:h-12 h-10 border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
+          <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
             <option
               disabled
               selected
@@ -139,7 +144,7 @@ const AddProducts = () => {
           </select>
 
           <label>Product SubCategory</label>
-          <select className="text-[16px] border w-[400px] xl:h-12 h-10 border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
+          <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
             <option
               disabled
               selected
@@ -151,7 +156,7 @@ const AddProducts = () => {
           </select>
 
           <label>Product Brand</label>
-          <select className="text-[16px] border w-[400px] xl:h-12 h-10 border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
+          <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
             <option
               disabled
               selected
@@ -163,25 +168,10 @@ const AddProducts = () => {
           </select>
         </div>
       </div>
+      <div className='flex justify-center'>
 
-      <button
-        disabled={loading}
-        size="lg"
-        color="blue-gray"
-        className="flex justify-center items-center self-center my-5 w-[400px] h-10 xl:h-12 text-lg text-white bg-green-700 rounded-lg"
-      >
-        {loading ? (
-          <SpinnerCircularFixed
-            size={40}
-            thickness={100}
-            speed={120}
-            color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, 0.9)"
-          />
-        ) : (
-          'Create'
-        )}
-      </button>
+      <CreateButton loading={loading} />
+      </div>
     </form>
   );
 };

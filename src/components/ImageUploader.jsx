@@ -35,7 +35,7 @@ const ImageUploader = ({ route, images }) => {
   };
 
   return (
-    <div className="text-black dark:text-white dark:bg-[#171716]">
+    <div className="text-black dark:text-white dark:bg-[#171716] animate-fadedown">
       <Upload.Dragger
         multiple
         fileList={fileList}

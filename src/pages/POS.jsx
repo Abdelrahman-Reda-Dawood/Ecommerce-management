@@ -10,11 +10,18 @@ function POS() {
 
   return (
     <div className={`${theme}`}>
-      <div className="flex flex-row font-serif bg-stone-200 dark:bg-[#171716] h-screen w-screen overflow-hidden">
+      <div
+        className="flex flex-row bg-stone-200 dark:bg-darkbg
+       h-screen w-screen overflow-hidden font-sans"
+      >
         <POSSidebar />
         <div className="flex flex-col flex-1">
           <POSHeader />
-          <div className="flex-1 p-4 min-h-0 overflow-auto">
+          <div
+            className="flex flex-row justify-between h-full
+           mx-5 my-3 bg-lightbg dark:bg-[#171716]/70  rounded-3xl "
+          >
+            <Checkout />
             <Checkout />
           </div>
         </div>

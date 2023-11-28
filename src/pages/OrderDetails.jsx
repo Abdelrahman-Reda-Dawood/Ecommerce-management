@@ -13,7 +13,7 @@ const OrderDetails = ({
   DeliveryStatus,
 }) => {
   return (
-    <div className="m-3 text-white">
+    <div className="m-3 text-white animate-fadedown">
       <OrderCard image={cardImage} />
       <ClientDetailsCard />
     </div>

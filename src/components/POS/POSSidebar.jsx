@@ -3,14 +3,14 @@ import { POSNavigationData } from '../../lib/constants/navigationData';
 
 function SidebarLink({ item }) {
   return (
-    <li className="hover:bg-gray-100 dark:hover:bg-primarygreen relative group">
+    <li className="hover:bg-gray-100 dark:hover:bg-primarygreen relative group animate-faderight">
       <Link
         to={item.path}
         className="h-16 px-6 flex justify-center items-center "
       >
         {item.icon}
         <p
-          className="absolute left-full rounded-md px-2 py-1 ml-6 
+          className="absolute left-full whitespace-nowrap rounded-md px-2 py-1 ml-6 
           bg-green-100 text-black text-md text-center
           invisible opacity-20 -translate-x-3 
           group-hover:visible group-hover:opacity-100 group-hover:translate-x-0"
@@ -26,7 +26,7 @@ function POSSidebar() {
   return (
     <div className="flex flex-col items-center bg-neutral-300 dark:bg-darkbg text-gray-700 dark:text-white shadow-md shadow-green-300 h-screen">
       {/* LOGO */}
-      <div className="h-16 flex items-center w-full">
+      <div className="h-16 flex items-center w-full hover:animate-spin">
         <Link
           className="h-6 w-6 mx-auto"
           to={'/'}
