@@ -10,12 +10,12 @@
   scroll-behavior: smooth;
   background-color: '#171716';
 }
+
 @media(prefers-reduced-motion) {
   * {
     transition: none;
   }
 }
-
 
 @layer components {
   .max-container {

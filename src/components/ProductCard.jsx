@@ -1,7 +1,7 @@
-import cardImage from '../assets/Image1.png';
+// import cardImage from '../assets/Image1.png';
 import ImageCard from './ImageCard';
 
-const bgcolor = 'bg-neutral-200 dark:bg-[#343434]';
+const bgcolor = 'bg-neutral-300 dark:bg-[#343434]';
 const width = '2xl:w-[330px] lg:w-[260px] md:w-[160px]';
 const height = 'h-[315px]';
 const zindex = 'z-10';
@@ -69,7 +69,7 @@ const ProductCard = ({
         </>
         <div className="flex flex-nowrap">
           <div className="w-[1px] h-auto bg-white dark:bg-neutral-900 mr-1" />
-          <p className="text-xl font-semibold self-center">${price}</p>
+          <p className="text-lg font-semibold self-center">${price}</p>
         </div>
       </div>
     </ImageCard>

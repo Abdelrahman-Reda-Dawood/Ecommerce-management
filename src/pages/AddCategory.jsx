@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { SpinnerCircularFixed } from 'spinners-react';
 import Input from '../components/Input';
 import CreateButton from '../components/CreateButton';
 

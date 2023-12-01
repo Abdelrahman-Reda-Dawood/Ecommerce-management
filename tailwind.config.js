@@ -47,11 +47,11 @@ module.exports = {
         fadeup: 'fadeup 1s ease-in-out',
         fadedown: 'fadedown 1s ease-in-out',
         faderight: 'faderight 1s ease-in-out',
-        zoomin: 'zoomin 2s',
+        zoomin: 'zoomin 3s',
       },
     },
     screens: {
-       xs: '520px',
+      xs: '520px',
 
       // sm: '640px',
 

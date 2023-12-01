@@ -1,7 +1,6 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react';
-import { SpinnerCircularFixed } from 'spinners-react';
 
 import Input from '../components/Input';
 import CreateButton from '../components/CreateButton';
@@ -65,7 +64,7 @@ const AddShop = () => {
         className="flex justify-between 2xl:flex-row xl:flex-row md:flex-row sm:flex-col xs:flex-col 
        m-7 text-2xl font-semibold gap-4 text-black dark:text-white"
       >
-        <div className="flex flex-col gap-4 animate-fadeup">
+        <div className="flex flex-col gap-4 animate-fadedown">
           <Input
             title={'Shop Name'}
             placeholder={'Enter shop name...'}

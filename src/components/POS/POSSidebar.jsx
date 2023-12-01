@@ -24,7 +24,7 @@ function SidebarLink({ item }) {
 
 function POSSidebar() {
   return (
-    <div className="flex flex-col items-center bg-neutral-300 dark:bg-darkbg text-gray-700 dark:text-white shadow-md shadow-green-300 h-screen">
+    <div className="flex flex-col items-center bg-neutral-300 dark:bg-darkbg text-gray-700 dark:text-white shadow-md h-screen">
       {/* LOGO */}
       <div className="h-16 flex items-center w-full hover:animate-spin">
         <Link
@@ -50,7 +50,7 @@ function POSSidebar() {
       {/* Logout Button */}
       <div className="mt-auto h-16 flex items-center w-full">
         <button
-          class="h-16 w-full mx-auto flex justify-center items-center
+          className="h-16 w-full mx-auto flex justify-center items-center
            focus:text-orange-500 hover:bg-red-200 dark:hover:bg-red-400 focus:outline-none"
         >
           <svg
@@ -61,9 +61,9 @@ function POSSidebar() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
             <polyline points="16 17 21 12 16 7" />

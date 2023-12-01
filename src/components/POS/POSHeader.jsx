@@ -1,6 +1,6 @@
 function POSHeader() {
   return (
-    <div className="pt-3 flex items-center justify-center animate-fadedown">
+    <div className="p-2 flex items-center justify-center animate-fadedown bg-neutral-300 dark:bg-darkbg text-gray-700 dark:text-white shadow-md shadow-neutral-300 dark:shadow-neutral-600">
       <div className="flex space-x-2">
         <input
           type="text"

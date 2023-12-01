@@ -9,7 +9,6 @@ import RegisterLayout from './components/register/RegisterLayout';
 import Layout from './components/shared/Layout';
 import AddBrand from './pages/AddBrand';
 import AddCategory from './pages/AddCategory';
-import AddCoupon from './pages/AddCoupon';
 import AddProducts from './pages/AddProducts';
 import AddShop from './pages/AddShop';
 import AddSupplier from './pages/AddSupplier';
@@ -64,10 +63,10 @@ function App() {
               path="/add-brand"
               element={<AddBrand />}
             />
-            <Route
+            {/* <Route
               path="/add-coupon"
               element={<AddCoupon />}
-            />
+            /> */}
             <Route
               path="/add-shop"
               element={<AddShop />}

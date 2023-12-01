@@ -11,7 +11,7 @@ const AddProducts = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
+  // const [quantity, setQuantity] = useState('');
 
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
