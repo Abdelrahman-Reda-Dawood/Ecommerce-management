@@ -1,6 +1,8 @@
 import { Button } from '@material-tailwind/react';
 import { Modal, Upload } from 'antd';
-import React, { useState } from 'react';
+// import axios from 'axios';
+
+import { useState } from 'react';
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -10,10 +12,11 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUploader = ({ route, images }) => {
+const ImageUploader = ({ handleImageCallback }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
+
   const [fileList, setFileList] = useState([]);
 
   const handleCancel = () => setPreviewOpen(false);
@@ -28,32 +31,67 @@ const ImageUploader = ({ route, images }) => {
       file.name || file.url.substring(file.url.lastIndexOf('/') + 1)
     );
   };
-  const handleChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-    console.log(fileList);
-    return fileList;
+
+  const handleChange = ({ fileList }) => {
+    setFileList(fileList);
+    Object.values(fileList).map((item, index) =>
+      handleImageCallback(fileList[index].name)
+    );
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+
+  //   fileList.forEach((file) => {
+  //     formData.append('files[]', file);
+  //   });
+
+  //   axios
+  //     .post('https://shopping-api-7cy0.onrender.com/api/brands', formData)
+  //     .then((res) => {
+  //       console.log('res', res);
+  //     })
+  //     .catch((err) => {
+  //       console.log('err', err);
+  //     });
+  // };
+
+  const ImagePreviewMoadl = (
+    <Modal
+      open={previewOpen}
+      title={previewTitle}
+      onCancel={handleCancel}
+      footer={null}
+    >
+      <img
+        alt="imageName"
+        style={{
+          width: '100%',
+        }}
+        src={previewImage}
+      />
+    </Modal>
+  );
 
   return (
     <div className="text-black dark:text-white dark:bg-[#171716] animate-fadedown">
       <Upload.Dragger
         multiple
+        withCredentials
+        name="image"
+        listType="picture-card"
         fileList={fileList}
         onChange={handleChange}
         onPreview={handlePreview}
-        listType="picture-card"
-        action={`http://localhost:3000/${route}`}
-        beforeUpload={(file) => {
-          return false;
-        }}
-        data={fileList}
+        beforeUpload={() => false}
       >
         <div className="flex flex-col items-center text-black dark:text-white">
           Drag files here Or
           <Button
             size="lg"
             variant="gradient"
-            className="flex gap-2 flex-row items-center m-2 p-2 bg-neutral-300"
+            className="flex gap-2 flex-row items-center m-2 p-2 text-black dark:text-white bg-neutral-300"
           >
             Upload
             <svg
@@ -62,7 +100,7 @@ const ImageUploader = ({ route, images }) => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 "
             >
               <path
                 strokeLinecap="round"
@@ -73,21 +111,9 @@ const ImageUploader = ({ route, images }) => {
           </Button>
         </div>
       </Upload.Dragger>
+
       {/* Image preview */}
-      <Modal
-        open={previewOpen}
-        title={previewTitle}
-        footer={null}
-        onCancel={handleCancel}
-      >
-        <img
-          alt="imageName"
-          style={{
-            width: '100%',
-          }}
-          src={previewImage}
-        />
-      </Modal>
+      {ImagePreviewMoadl}
     </div>
   );
 };

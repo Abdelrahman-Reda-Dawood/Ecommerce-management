@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SpinnerCircularFixed } from 'spinners-react';
+import axios from 'axios';
+
 import toast from 'react-hot-toast';
 
 import ProductCard from '../components/ProductCard';
@@ -11,27 +13,29 @@ const ManageProduct = () => {
 
   useEffect(() => {
     setLoading(true);
-    try {
-      const fetchProducts = async () => {
-        await fetch(
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get(
           'https://shopping-api-7cy0.onrender.com/api/products'
-        ).then((response) => {
-          response.json().then((products) => {
-            setProducts(products);
-            console.log(products.data);
-            setLoading(false);
-          });
-        });
-      };
-      fetchProducts();
-    } catch (error) {
-      toast.error('error while getting products');
-    }
+        );
+        setProducts(data);
+        setLoading(false);
+        console.log(data);
+      } catch {
+        toast.error('Error while Loading products');
+      }
+    };
+    fetchProducts();
   }, []);
 
-  const loadedProducts = Object.values(products).map((product, index) => (
-    <ProductCard {...products.data[index]} />
-  ));
+  const loadedProducts =
+    products.data &&
+    Object.values(products.data).map((product, index) => (
+      <ProductCard
+        key={products.data[index]._id}
+        {...products.data[index]}
+      />
+    ));
 
   return (
     <div className="m-5 px-5 grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 gap-3">

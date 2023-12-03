@@ -4,7 +4,7 @@ function POSHeader() {
       <div className="flex space-x-2">
         <input
           type="text"
-          className="w-80 xl:h-12 h-10 pl-3 text-sm border-2 border-white bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-full  focus:border-green-400 focus:ring-green-200 focus:outline-none focus:ring focus:ring-opacity-50 focus:animate-pulse"
+          className="w-80 xl:h-12 h-10 pl-3 text-sm border-2 border-white bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-full focus:border-green-400 focus:ring-green-200 focus:outline-none focus:ring focus:ring-opacity-50 focus:animate-pulse"
           placeholder="Search..."
         />
         <button className="px-4 text-white bg-green-500 hover:bg-primarygreen rounded-full ">

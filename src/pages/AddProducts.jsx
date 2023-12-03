@@ -5,6 +5,8 @@ import Input from '../components/Input';
 import ImageUploader from '../components/ImageUploader';
 import CreateButton from '../components/CreateButton';
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 const AddProducts = () => {
   const [loading, setLoading] = useState(false);
 
@@ -19,24 +21,39 @@ const AddProducts = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await axios.get(
-        'https://shopping-api-7cy0.onrender.com/api/categories'
-      );
-      setCategories(data);
+      try {
+        const { data } = await axios.get(
+          baseURL
+            ? `${baseURL}/api/categories`
+            : `https://shopping-api-7cy0.onrender.com/api/categories`
+        );
+        setCategories(data);
+      } catch (e) {
+        toast.error('Error while loading categories: ' + e);
+      }
+      console.log(baseURL);
     };
 
     const fetchSubCategories = async () => {
-      const { data } = await axios.get(
-        'https://shopping-api-7cy0.onrender.com/api/subcategories'
-      );
-      setSubCategories(data);
+      try {
+        const { data } = await axios.get(
+          'https://shopping-api-7cy0.onrender.com/api/subcategories'
+        );
+        setSubCategories(data);
+      } catch (e) {
+        toast.error('Error while loading subcategories: ' + e);
+      }
     };
 
     const fetchBrands = async () => {
-      const { data } = await axios.get(
-        'https://shopping-api-7cy0.onrender.com/api/brands'
-      );
-      setBrands(data);
+      try {
+        const { data } = await axios.get(
+          'https://shopping-api-7cy0.onrender.com/api/brands'
+        );
+        setBrands(data);
+      } catch (e) {
+        toast.error('Error while loading Brands: ' + e);
+      }
     };
 
     fetchCategories();
@@ -108,14 +125,17 @@ const AddProducts = () => {
       <ImageUploader />
 
       <div className="flex 2xl:flex-row justify-evenly sm:flex-col animate-fadeup">
-        <div className="flex flex-col gap-6">
+        {/* Inputs */}
+        <div className="flex flex-col">
           <Input
             title={'Product Name'}
             placeholder={'Enter Product Name'}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <h3>Shop Description</h3>
+          <h3 className="mb-1 xl:mb-2 text-black dark:text-white">
+            Shop Description
+          </h3>
           <textarea
             required
             value={description}
@@ -130,8 +150,11 @@ const AddProducts = () => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <div className="mt-3 flex flex-col gap-4">
-          <label>Product Category</label>
+        {/* Drop Downs */}
+        <div className="flex flex-col">
+          <label className="mb-1 xl:mb-2 text-black dark:text-white">
+            Product Category
+          </label>
           <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
             <option
               disabled
@@ -143,7 +166,9 @@ const AddProducts = () => {
             {categoriesOptions}
           </select>
 
-          <label>Product SubCategory</label>
+          <label className="mb-1 xl:mb-2 text-black dark:text-white">
+            Product SubCategory
+          </label>
           <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
             <option
               disabled
@@ -155,7 +180,9 @@ const AddProducts = () => {
             {subcategoriesOptions}
           </select>
 
-          <label>Product Brand</label>
+          <label className="mb-1 xl:mb-2 text-black dark:text-white">
+            Product Brand
+          </label>
           <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
             <option
               disabled
@@ -168,9 +195,8 @@ const AddProducts = () => {
           </select>
         </div>
       </div>
-      <div className='flex justify-center'>
-
-      <CreateButton loading={loading} />
+      <div className="flex justify-center">
+        <CreateButton loading={loading} />
       </div>
     </form>
   );

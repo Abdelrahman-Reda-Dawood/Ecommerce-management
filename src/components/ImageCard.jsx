@@ -15,7 +15,7 @@ const ImageCard = ({
       <img
         className={`${zindex} relative `}
         src={imgsrc}
-        alt="img"
+        alt="productImage"
       />
       <div className={`${bgcolor} absolute inset-0`}>
         <div className="p-4 text-white">{children}</div>

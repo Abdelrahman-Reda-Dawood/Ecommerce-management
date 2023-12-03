@@ -4,17 +4,19 @@ import img from '../../assets/Image1.png';
 function POSProductCard() {
   return (
     <div
-      class="2xl:w-80  h-fit p-2 flex flex-col mx-2 items-center
+      class="2xl:w-80  h-fit p-2 flex flex-col mx-2 items-
        bg-stone-100 dark:bg-neutral-700 text-black dark:text-white 
        rounded-3xl shadow-xl transition duration-300 animate-fadeup"
     >
-      <Link>
-        <img
-          class="rounded-xl h-40 w-48 "
-          src={img}
-          alt="product"
-        />
-      </Link>
+      <div className="self-center">
+        <Link>
+          <img
+            class="rounded-xl h-40 w-48 "
+            src={img}
+            alt="product"
+          />
+        </Link>
+      </div>
       <div class="px-3 pb-5">
         <Link to={'/'}>
           <h3 class="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">

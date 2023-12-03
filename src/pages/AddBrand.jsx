@@ -4,16 +4,19 @@ import toast from 'react-hot-toast';
 
 import Input from '../components/Input';
 import ImageUploader from '../components/ImageUploader';
-import { useParams } from 'react-router-dom';
 import CreateButton from '../components/CreateButton';
+
+const baseURL = process.env.REACT_APP_BASE_URL;
 
 const AddBrand = () => {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
-  // const [image, setImage] = useState('');
+  const [image, setImage] = useState('');
 
-  const { image } = useParams;
+  function handleImageCallback(childData) {
+    setImage(childData);
+  }
 
   const createBrand = async (e) => {
     e.preventDefault();
@@ -21,7 +24,9 @@ const AddBrand = () => {
     try {
       setLoading(true);
       await axios.post(
-        'https://shopping-api-7cy0.onrender.com/api/brands',
+        baseURL
+          ? `${baseURL}/api/brands`
+          : `https://shopping-api-7cy0.onrender.com/api/brands`,
         {
           name,
           image,
@@ -41,7 +46,7 @@ const AddBrand = () => {
       onSubmit={createBrand}
       className="mx-5 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
     >
-      <ImageUploader route={'api/brands'} />
+      <ImageUploader handleImageCallback={handleImageCallback} />
       <div className="animate-fadeup">
         <Input
           title={'Brand Name'}
