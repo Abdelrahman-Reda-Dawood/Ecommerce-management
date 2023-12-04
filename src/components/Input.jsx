@@ -4,6 +4,7 @@ function Input({ title, placeholder, type, value, onChange }) {
       <h3 className="mb-1 xl:mb-2 text-black dark:text-white">{title}</h3>
       <input
         required
+        min={0}
         type={type}
         value={value}
         onChange={onChange}

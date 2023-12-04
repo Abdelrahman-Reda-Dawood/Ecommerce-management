@@ -24,7 +24,7 @@ function SidebarLink({ item }) {
 
 function POSSidebar() {
   return (
-    <div className="flex flex-col items-center bg-neutral-300 dark:bg-darkbg text-gray-700 dark:text-white shadow-md h-screen">
+    <div className="flex flex-col items-center h-screen bg-neutral-300 dark:bg-darkbg text-gray-700 dark:text-white shadow-md">
       {/* LOGO */}
       <div className="h-16 flex items-center w-full hover:animate-spin">
         <Link

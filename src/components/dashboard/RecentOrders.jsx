@@ -114,7 +114,7 @@ const RecentOrders = () => {
                       variant="small"
                       color="blue-gray"
                     >
-                      <div className="w-16 flex justify-center gap-1 border rounded-full bg-cyan-600">
+                      <div className="flex justify-center w-16 border rounded-full bg-green-300">
                         {status}
                       </div>
                     </Typography>

@@ -34,28 +34,11 @@ const ImageUploader = ({ handleImageCallback }) => {
 
   const handleChange = ({ fileList }) => {
     setFileList(fileList);
-    Object.values(fileList).map((item, index) =>
-      handleImageCallback(fileList[index].name)
-    );
+    Object.values(fileList).map((item, index) => {
+      handleImageCallback(fileList[index].name);
+      console.log('Image name: ' + fileList[index].name);
+    });
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-
-  //   fileList.forEach((file) => {
-  //     formData.append('files[]', file);
-  //   });
-
-  //   axios
-  //     .post('https://shopping-api-7cy0.onrender.com/api/brands', formData)
-  //     .then((res) => {
-  //       console.log('res', res);
-  //     })
-  //     .catch((err) => {
-  //       console.log('err', err);
-  //     });
-  // };
 
   const ImagePreviewMoadl = (
     <Modal

@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 // const zindex = 'z-10';
 
 const ProductCard = ({
-  cartButton = false,
-  editButton = true,
+  buttons = 'top',
   title,
   imageCover,
   description,
@@ -77,11 +76,11 @@ const ProductCard = ({
     //   </div>
     // </ImageCard>
     <div
-      class="2xl:w-80  p-2 flex flex-col mx-2 bg-neutral-300 dark:bg-darkbg text-black dark:text-white 
+      className="2xl:w-80  p-2 flex flex-col mx-2 bg-stone-100 dark:bg-neutral-700 text-black dark:text-white 
      rounded-3xl shadow-md transition duration-300 animate-fadeup"
     >
       {/* Edit - Delete Buttons */}
-      {editButton && (
+      {buttons === 'top' && (
         <div className="flex justify-between pt-2 px-1 font-semibold text-lg text-black dark:text-white ">
           <button>
             <p>Edit</p>
@@ -96,23 +95,23 @@ const ProductCard = ({
       <div className="self-center">
         <Link>
           <img
-            class="rounded-xl h-40 w-48 "
+            className="rounded-2xl h-40 w-48 "
             src={imageCover}
             alt={imageCover}
           />
         </Link>
       </div>
-      <div class="px-3 pb-2">
+      <div className="px-3 pb-2">
         <div>
-          <h3 class="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">
+          <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">
             {title}
           </h3>
         </div>
         {/* Stars */}
-        <div class="flex justify-between mt-2.5 mb-5">
+        <div className="flex justify-between mt-2.5 mb-5">
           <div className="flex">
             <svg
-              class="w-5 h-5 text-yellow-300"
+              className="w-5 h-5 text-yellow-300"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +119,7 @@ const ProductCard = ({
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
             <svg
-              class="w-5 h-5 text-yellow-300"
+              className="w-5 h-5 text-yellow-300"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +127,7 @@ const ProductCard = ({
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
             <svg
-              class="w-5 h-5 text-yellow-300"
+              className="w-5 h-5 text-yellow-300"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +135,7 @@ const ProductCard = ({
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
             <svg
-              class="w-5 h-5 text-yellow-300"
+              className="w-5 h-5 text-yellow-300"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +143,7 @@ const ProductCard = ({
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
             <svg
-              class="w-5 h-5 text-yellow-300"
+              className="w-5 h-5 text-yellow-300"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -160,20 +159,25 @@ const ProductCard = ({
           </span>
         </div>
 
-        <div class="flex items-start justify-evenly mt-5 ">
+        <div className="flex items-center justify-evenly mt-5 ">
           <div className="flex flex-col items-center">
             {priceAfterDiscount && (
-              <span class="text-2xl line-through font-bold text-gray-500 dark:text-gray-400">
-                ${priceAfterDiscount ? price : ''}
+              <span className="text-xl line-through font-bold text-gray-500 dark:text-gray-400">
+                ${priceAfterDiscount && price}
               </span>
             )}
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">
               ${priceAfterDiscount ? priceAfterDiscount : price}
             </span>
           </div>
 
-          {cartButton && (
-            <button className="flex gap-2 text-white text-md font-semibold bg-green-500 py-2 px-4 rounded-lg shadow-md hover:shadow-lg whitespace-nowrap transition duration-500 transform-gpu hover:bg-primarygreen hover:scale-110 group">
+          {/* Cart Button */}
+          {buttons === 'bottom' && (
+            <button
+              className="flex place-self-end group gap-2 py-2 px-4 text-white text-md
+             font-semibold bg-green-500 rounded-lg shadow-md hover:shadow-lg whitespace-nowrap
+            transition duration-500 transform-gpu hover:bg-primarygreen hover:scale-110"
+            >
               Add to cart
               <svg
                 xmlns="http://www.w3.org/2000/svg"

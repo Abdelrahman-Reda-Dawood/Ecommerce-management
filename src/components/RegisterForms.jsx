@@ -3,11 +3,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
-import { SpinnerCircularFixed } from 'spinners-react';
 import Input from './Input';
+import { LoadingSpinner } from './LoadingSpinner';
 
-export function SingupForm({ setSignup }) {
+export function SignupForm({ setSignup }) {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
@@ -74,24 +73,14 @@ export function SingupForm({ setSignup }) {
         disabled={loading}
         className="flex justify-center items-center mt-5 xl:m-6 2xl:w-[400px] lg:w-[300px] h-10 xl:h-12 p-3 mx-4 text-white text-lg bg-green-700 rounded-lg"
       >
-        {loading ? (
-          <SpinnerCircularFixed
-            size={40}
-            thickness={100}
-            speed={120}
-            color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, .99)"
-          />
-        ) : (
-          'Sign Up'
-        )}
+        {loading ? <LoadingSpinner size={'35'} /> : 'Sign Up'}
       </button>
-      <div className="flex items-center gap-4 mx-10">
+      <div className="flex items-center gap-4 mx-10 whitespace-nowrap">
         Already have an account?
         <Button
           size="lg"
           variant="gradient"
-          className="flex justify-center h-10 p-3 bg-neutral-600 items-center "
+          className="flex justify-center h-10 p-3 bg-neutral-600 items-center whitespace-nowrap"
           onClick={() => setSignup(false)}
         >
           Log in
@@ -153,24 +142,14 @@ export function SigninForm({ setSignup }) {
         color="blue-gray"
         className="flex justify-center items-center my-5 2xl:w-[400px] lg:w-[300px] h-10 xl:h-12 p-3 mx-4 text-lg text-white bg-green-700 rounded-lg"
       >
-        {loading ? (
-          <SpinnerCircularFixed
-            size={40}
-            thickness={100}
-            speed={120}
-            color="#36ad47"
-            secondaryColor="rgba(255, 255, 255, 0.9)"
-          />
-        ) : (
-          'Proceed Order'
-        )}
+        {loading ? <LoadingSpinner size={'35'} /> : 'Log in'}
       </button>
-      <div className="flex items-center gap-4 mx-10">
+      <div className="flex items-center gap-4 mx-10 whitespace-nowrap">
         Don't have an account?
         <Button
           size="lg"
           variant="gradient"
-          className="flex justify-center h-10 p-3 bg-neutral-600 items-center"
+          className="flex justify-center h-10 p-3 bg-neutral-600 items-center whitespace-nowrap"
           onClick={() => setSignup(true)}
         >
           Sign up

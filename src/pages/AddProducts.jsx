@@ -10,14 +10,20 @@ const baseURL = process.env.REACT_APP_BASE_URL;
 const AddProducts = () => {
   const [loading, setLoading] = useState(false);
 
-  const [name, setName] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  // const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [imageCover, setImageCover] = useState('');
 
   const [categories, setCategories] = useState([]);
+  const [categoryId, setCategoryId] = useState('');
+
   const [subCategories, setSubCategories] = useState([]);
+  const [subCategoryId, setSubCategoryId] = useState('');
+
   const [brands, setBrands] = useState([]);
+  const [brandId, setBrandId] = useState('');
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -31,7 +37,7 @@ const AddProducts = () => {
       } catch (e) {
         toast.error('Error while loading categories: ' + e);
       }
-      console.log(baseURL);
+      console.log('api base URL: ' + baseURL);
     };
 
     const fetchSubCategories = async () => {
@@ -60,6 +66,10 @@ const AddProducts = () => {
     fetchSubCategories();
     fetchBrands();
   }, []);
+
+  function handleImageCallback(childData) {
+    setImageCover(childData);
+  }
 
   const categoriesOptions =
     categories.data &&
@@ -105,15 +115,21 @@ const AddProducts = () => {
       await axios.post(
         'https://shopping-api-7cy0.onrender.com/api/products',
         {
-          title: name,
+          title,
+          imageCover,
           price,
           description,
+          category: categoryId,
+          subCategories: subCategoryId,
+          brand: brandId,
         }
       );
       toast.success('Product added successfully');
       setLoading(false);
     } catch (error) {
       toast.error('Error while adding product');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -122,16 +138,29 @@ const AddProducts = () => {
       onSubmit={createProduct}
       className="mx-5 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
     >
-      <ImageUploader />
+      <ImageUploader handleImageCallback={handleImageCallback} />
 
       <div className="flex 2xl:flex-row justify-evenly sm:flex-col animate-fadeup">
         {/* Inputs */}
         <div className="flex flex-col">
           <Input
             title={'Product Name'}
-            placeholder={'Enter Product Name'}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            placeholder={'Product Name...'}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Input
+            title={'Product Price'}
+            placeholder={'Product price...'}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          <Input
+            title={'Quantity'}
+            placeholder={'Enter a number...'}
+            type={'number'}
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
           <h3 className="mb-1 xl:mb-2 text-black dark:text-white">
             Shop Description
@@ -140,14 +169,8 @@ const AddProducts = () => {
             required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter shop description..."
+            placeholder="Shop description..."
             className="text-sm border 2xl:w-[400px] lg:w-[300px] md:w-[300px] h-12 p-3 border-green-400 focus:border-white  pl-3 bg-neutral-100 dark:bg-neutral-600 rounded-lg"
-          />
-          <Input
-            title={'Product Price'}
-            placeholder={'Enter Product price'}
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         {/* Drop Downs */}
@@ -155,13 +178,16 @@ const AddProducts = () => {
           <label className="mb-1 xl:mb-2 text-black dark:text-white">
             Product Category
           </label>
-          <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
+          <select
+            onChange={(e) => setCategoryId(e.target.value)}
+            className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
+          >
             <option
               disabled
               selected
               className="font-bold text-black"
             >
-              Please select a category
+              Select Category
             </option>
             {categoriesOptions}
           </select>
@@ -169,13 +195,16 @@ const AddProducts = () => {
           <label className="mb-1 xl:mb-2 text-black dark:text-white">
             Product SubCategory
           </label>
-          <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
+          <select
+            onChange={(e) => setSubCategoryId(e.target.value)}
+            className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
+          >
             <option
               disabled
               selected
               className="font-bold text-black"
             >
-              Please select a subcategory
+              Select Subcategory
             </option>
             {subcategoriesOptions}
           </select>
@@ -183,13 +212,16 @@ const AddProducts = () => {
           <label className="mb-1 xl:mb-2 text-black dark:text-white">
             Product Brand
           </label>
-          <select className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg">
+          <select
+            onChange={(e) => setBrandId(e.target.value)}
+            className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
+          >
             <option
               disabled
               selected
               className="font-bold text-black"
             >
-              Please select a brand
+              Select Brand
             </option>
             {brandsOptions}
           </select>

@@ -56,11 +56,11 @@ export const navigationData = [
     icon: icon,
     path: '/add-shop',
   },
-  {
-    title: 'Add User ',
-    icon: icon,
-    path: '/add-user',
-  },
+  // {
+  //   title: 'Add User ',
+  //   icon: icon,
+  //   path: '/add-user',
+  // },
   {
     title: 'Add Supplier ',
     icon: icon,

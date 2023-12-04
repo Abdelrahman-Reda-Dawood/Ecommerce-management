@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useContext } from 'react';
-
+import toast from 'react-hot-toast';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -15,10 +15,18 @@ function Layout() {
       setTheme(savedTheme);
     }
   }
+
   const toggleDarkMode = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('theme', newTheme);
+      prevTheme === 'light'
+        ? toast('Dark Mode!', {
+            icon: '🌚',
+            style: { color: 'white', background: '#999999' },
+          })
+        : toast('Light Mode!', { icon: '🌝' });
+
       return newTheme;
     });
   };
