@@ -15,7 +15,7 @@ import AddSupplier from './pages/AddSupplier';
 import AddUser from './pages/AddUser';
 import Dashboard from './pages/Dashboard';
 import ManageOrders from './pages/ManageOrders';
-import ManageProduct from './pages/ManageProduct';
+import Products from './pages/Products';
 import OrderDetails from './pages/OrderDetails';
 import Subcategory from './pages/Subcategory';
 import POS from './pages/POS';
@@ -37,7 +37,7 @@ function App() {
             />
             <Route
               path="/manage-product"
-              element={<ManageProduct />}
+              element={<Products />}
             />
             <Route
               path="/manage-orders"

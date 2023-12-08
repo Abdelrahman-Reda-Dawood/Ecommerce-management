@@ -1,4 +1,15 @@
-function POSHeader() {
+import { useState } from 'react';
+
+const POSHeader = ({ handleSearchCallback }) => {
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearch = () => {
+    return (
+      handleSearchCallback(searchInput),
+      console.log('Header component : ' + searchInput)
+    );
+  };
+
   return (
     <div
       className="p-2 flex items-center justify-center 
@@ -7,11 +18,17 @@ function POSHeader() {
     >
       <div className="flex space-x-2 animate-fadedown">
         <input
+          onChange={(e) => setSearchInput(e.target.value)}
+          value={searchInput}
           type="text"
-          className="w-80 xl:h-12 h-10 pl-3 text-sm border-2 border-white bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-full focus:border-green-400 focus:ring-green-200 focus:outline-none focus:ring focus:ring-opacity-50 focus:animate-pulse"
           placeholder="Search..."
+          className="w-80 xl:h-12 h-10 pl-3 text-sm border-2 border-white bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-full focus:border-green-400 focus:ring-green-200 focus:outline-none focus:ring focus:ring-opacity-50 focus:animate-pulse"
         />
-        <button className="px-4 text-white bg-green-500 hover:bg-primarygreen rounded-full ">
+        <button
+          disabled={!searchInput}
+          onClick={handleSearch}
+          className="px-4 text-white bg-green-500 hover:bg-primarygreen rounded-full "
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5"
@@ -30,5 +47,5 @@ function POSHeader() {
       </div>
     </div>
   );
-}
+};
 export default POSHeader;

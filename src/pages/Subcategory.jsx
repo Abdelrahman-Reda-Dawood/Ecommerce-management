@@ -43,7 +43,7 @@ const Subcategory = () => {
           category: categoryId,
         }
       );
-      toast.success('Category added successfully');
+      toast.success('Subcategory added successfully');
       setLoading(false);
     } catch (error) {
       toast.error('Error Creating Subcategory');

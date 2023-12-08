@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+
 import Input from '../components/Input';
 import ImageUploader from '../components/ImageUploader';
 import CreateButton from '../components/CreateButton';
@@ -11,10 +12,10 @@ const AddProducts = () => {
   const [loading, setLoading] = useState(false);
 
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
   const [imageCover, setImageCover] = useState('');
+  const [description, setDescription] = useState('');
 
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState('');
@@ -24,6 +25,10 @@ const AddProducts = () => {
 
   const [brands, setBrands] = useState([]);
   const [brandId, setBrandId] = useState('');
+
+  function handleImageCallback(childData) {
+    setImageCover(childData);
+  }
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -66,10 +71,6 @@ const AddProducts = () => {
     fetchSubCategories();
     fetchBrands();
   }, []);
-
-  function handleImageCallback(childData) {
-    setImageCover(childData);
-  }
 
   const categoriesOptions =
     categories.data &&
@@ -151,14 +152,15 @@ const AddProducts = () => {
           />
           <Input
             title={'Product Price'}
+            type={'number'}
             placeholder={'Product price...'}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
           <Input
             title={'Quantity'}
-            placeholder={'Enter a number...'}
             type={'number'}
+            placeholder={'Enter a number...'}
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />

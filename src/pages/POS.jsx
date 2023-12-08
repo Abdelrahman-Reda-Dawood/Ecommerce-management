@@ -1,13 +1,19 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import CheckoutCard from '../components/POS/CheckoutCard';
 import POSHeader from '../components/POS/POSHeader';
 import POSSidebar from '../components/POS/POSSidebar';
 import { ThemeContext } from '../context/ThemeContext';
-import ManageProduct from './ManageProduct';
+import Products from './Products';
 
-function POS() {
+const POS = () => {
   const [theme] = useContext(ThemeContext);
+  const [searchResult, setSearchResult] = useState('');
+
+  function handleSearchCallback(childData) {
+    setSearchResult(childData);
+    console.log('POS search component : ' + childData);
+  }
 
   return (
     <div className={`${theme}`}>
@@ -17,15 +23,20 @@ function POS() {
       >
         <POSSidebar />
         <div className="flex flex-col flex-1">
-          <POSHeader />
+          <POSHeader handleSearchCallback={handleSearchCallback} />
           <div className="flex flex-row py-5 overflow-auto">
-            <ManageProduct buttons="bottom" />
-            <div className="sticky top-0">{<CheckoutCard />}</div>
+            <Products
+              searchResult={searchResult}
+              buttons="bottom"
+            />
+            <div className="sticky top-0 py-0 overflow-y-auto">
+              {<CheckoutCard />}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default POS;

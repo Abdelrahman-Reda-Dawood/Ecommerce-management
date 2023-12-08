@@ -35,8 +35,10 @@ const ImageUploader = ({ handleImageCallback }) => {
   const handleChange = ({ fileList }) => {
     setFileList(fileList);
     Object.values(fileList).map((item, index) => {
-      handleImageCallback(fileList[index].name);
-      console.log('Image name: ' + fileList[index].name);
+      return (
+        handleImageCallback(fileList[index].name),
+        console.log('Image name: ' + fileList[index].name)
+      );
     });
   };
 

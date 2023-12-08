@@ -48,7 +48,7 @@ const AddSupplier = () => {
       />
       <Input
         title={'Phone'}
-        type={'tel'}
+        type={'number'}
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         placeholder={'02-000-000-000'}
@@ -61,6 +61,7 @@ const AddSupplier = () => {
       />
       <Input
         title={'Net Profit'}
+        type={'number'}
         value={netPorfit}
         onChange={(e) => setNetProfit(e.target.value)}
         placeholder={'Enter net Profit...'}

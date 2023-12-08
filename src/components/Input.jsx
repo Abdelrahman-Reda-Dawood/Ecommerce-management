@@ -1,10 +1,11 @@
-function Input({ title, placeholder, type, value, onChange }) {
+function Input({ title, name, placeholder, type, value, onChange }) {
   return (
     <div className="relative justify-center font-semibold">
       <h3 className="mb-1 xl:mb-2 text-black dark:text-white">{title}</h3>
       <input
         required
         min={0}
+        name={name}
         type={type}
         value={value}
         onChange={onChange}

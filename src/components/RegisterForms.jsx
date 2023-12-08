@@ -30,7 +30,7 @@ export function SignupForm({ setSignup }) {
       toast.success('Registration successful');
       setSignup(false);
     } catch (error) {
-      toast.error('Registration Failed');
+      toast.error('Registration Failed try again');
     } finally {
       setLoading(false);
     }

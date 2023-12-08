@@ -20,12 +20,14 @@ function Layout() {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('theme', newTheme);
+
       prevTheme === 'light'
         ? toast('Dark Mode!', {
+            id: 'theme',
             icon: '🌚',
             style: { color: 'white', background: '#999999' },
           })
-        : toast('Light Mode!', { icon: '🌝' });
+        : toast('Light Mode!', { id: 'theme', icon: '🌝' });
 
       return newTheme;
     });

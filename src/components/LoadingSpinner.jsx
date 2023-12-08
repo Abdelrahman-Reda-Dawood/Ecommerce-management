@@ -6,7 +6,7 @@ export function LoadingSpinner({ size }) {
     <SpinnerCircularFixed
       size={size}
       thickness={100}
-      speed={120}
+      speed={140}
       color="#36ad47"
       secondaryColor="rgba(255, 255, 255, 1)"
     />

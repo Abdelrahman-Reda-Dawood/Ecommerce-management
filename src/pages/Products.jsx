@@ -6,12 +6,12 @@ import Swal from 'sweetalert2';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import ProductCard from '../components/ProductCard';
 
-const ManageProduct = ({ buttons }) => {
+const Products = ({ buttons, searchResult }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [searchResult]);
 
   const fetchProducts = async () => {
     const toastLoading = toast.loading('loading');
@@ -61,19 +61,34 @@ const ManageProduct = ({ buttons }) => {
       });
   };
 
-  const loadedProducts =
-    products.data &&
-    Object.values(products.data).map((product, index) => (
-      <ProductCard
-        buttons={buttons}
-        deleteProduct={deleteProduct}
-        key={products.data[index]._id}
-        {...products.data[index]}
-      />
-    ));
+  const loadedProducts = !searchResult
+    ? products.data &&
+      Object.values(products.data).map((product, index) => (
+        <ProductCard
+          buttons={buttons}
+          deleteProduct={deleteProduct}
+          key={products.data[index]._id}
+          {...products.data[index]}
+        />
+      ))
+    : searchResult &&
+      products.data &&
+      products.data.title &&
+      Object.values(products.data)
+        .filter((product, index) =>
+          product.title.toString().toLowerCase().search(searchResult)
+        )
+        .map((product, index) => (
+          <ProductCard
+            buttons={buttons}
+            {...products.data[index]}
+            key={products.data[index]._id}
+            deleteProduct={deleteProduct}
+          />
+        ));
 
   return (
-    <div className="m-5 px-5 grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 gap-8">
+    <div className="mx-5 px-5 grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 gap-8">
       {loadedProducts ? (
         <>{loadedProducts}</>
       ) : (
@@ -85,4 +100,4 @@ const ManageProduct = ({ buttons }) => {
   );
 };
 
-export default ManageProduct;
+export default Products;
