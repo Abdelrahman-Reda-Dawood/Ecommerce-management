@@ -31,46 +31,39 @@ const AddProducts = () => {
   }
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await axios.get(
-          baseURL
-            ? `${baseURL}/api/categories`
-            : `https://shopping-api-7cy0.onrender.com/api/categories`
-        );
-        setCategories(data);
-      } catch (e) {
-        toast.error('Error while loading categories: ' + e);
-      }
-      console.log('api base URL: ' + baseURL);
-    };
-
-    const fetchSubCategories = async () => {
-      try {
-        const { data } = await axios.get(
-          'https://shopping-api-7cy0.onrender.com/api/subcategories'
-        );
-        setSubCategories(data);
-      } catch (e) {
-        toast.error('Error while loading subcategories: ' + e);
-      }
-    };
-
-    const fetchBrands = async () => {
-      try {
-        const { data } = await axios.get(
-          'https://shopping-api-7cy0.onrender.com/api/brands'
-        );
-        setBrands(data);
-      } catch (e) {
-        toast.error('Error while loading Brands: ' + e);
-      }
-    };
-
-    fetchCategories();
-    fetchSubCategories();
-    fetchBrands();
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get(
+        baseURL
+          ? `${baseURL}/api/categories`
+          : `https://shopping-api-7cy0.onrender.com/api/categories`
+      );
+      setCategories(data);
+    } catch (e) {
+      toast.error('Error while loading categories');
+    }
+
+    try {
+      const { data } = await axios.get(
+        'https://shopping-api-7cy0.onrender.com/api/subcategories'
+      );
+      setSubCategories(data);
+    } catch (e) {
+      toast.error('Error while loading subcategories');
+    }
+
+    try {
+      const { data } = await axios.get(
+        'https://shopping-api-7cy0.onrender.com/api/brands'
+      );
+      setBrands(data);
+    } catch (e) {
+      toast.error('Error while loading Brands');
+    }
+  };
 
   const categoriesOptions =
     categories.data &&
@@ -152,15 +145,14 @@ const AddProducts = () => {
           />
           <Input
             title={'Product Price'}
-            type={'number'}
             placeholder={'Product price...'}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
           <Input
             title={'Quantity'}
-            type={'number'}
             placeholder={'Enter a number...'}
+            type={'number'}
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
