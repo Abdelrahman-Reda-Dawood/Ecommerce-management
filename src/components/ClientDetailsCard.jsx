@@ -31,7 +31,10 @@ const ClientDetailsCard = () => {
           >
             Save
           </Button>
-          <Dropdown title={['Paid', 'Not Paid']} />
+          <Dropdown
+            initTitle={['Payment']}
+            title={['Paid', 'Not Paid']}
+          />
         </div>
         <div className="flex lg:flex-row md:flex-row xs:flex-col">
           <Button
@@ -41,7 +44,10 @@ const ClientDetailsCard = () => {
           >
             Save
           </Button>
-          <Dropdown title={['Deliverd', 'Not Deliverd']} />
+          <Dropdown
+            initTitle={['Delivery']}
+            title={['Deliverd', 'Not Deliverd']}
+          />
         </div>
       </div>
     </div>

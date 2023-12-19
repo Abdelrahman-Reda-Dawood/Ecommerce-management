@@ -6,7 +6,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { ThemeContext } from '../../context/ThemeContext';
 
-function Layout() {
+function Layout(user) {
   const [theme, setTheme] = useContext(ThemeContext);
 
   function getThemeFromLocalStorage() {

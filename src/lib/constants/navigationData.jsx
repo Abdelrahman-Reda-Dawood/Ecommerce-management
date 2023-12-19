@@ -19,52 +19,47 @@ export const navigationData = [
   {
     title: 'Manage Orders',
     icon: icon,
-    path: '/manage-orders',
+    path: '/orders',
   },
   {
     title: 'Manage Products',
     icon: icon,
-    path: '/manage-product',
+    path: '/products',
   },
   {
     title: 'Add Product',
     icon: icon,
-    path: '/add-product',
+    path: '/add/product',
   },
   {
-    title: 'Add Category',
+    title: `Add Category`,
     icon: icon,
-    path: '/add-category',
+    path: '/add/category',
   },
   {
     title: 'Add Subcategory',
     icon: icon,
-    path: '/sub-category',
+    path: 'add/subcategory',
   },
   {
     title: 'Add Brand',
     icon: icon,
-    path: '/add-brand',
+    path: '/add/brand',
   },
-  // {
-  //   title: 'Add Coupon',
-  //   icon: icon,
-  //   path: '/add-coupon',
-  // },
   {
     title: 'Add Shop',
     icon: icon,
-    path: '/add-shop',
+    path: '/add/shop',
   },
-  // {
-  //   title: 'Add User ',
-  //   icon: icon,
-  //   path: '/add-user',
-  // },
   {
     title: 'Add Supplier ',
     icon: icon,
-    path: '/add-supplier',
+    path: '/add/supplier',
+  },
+  {
+    title: 'Factory ',
+    icon: icon,
+    path: '/add/factory',
   },
 ];
 

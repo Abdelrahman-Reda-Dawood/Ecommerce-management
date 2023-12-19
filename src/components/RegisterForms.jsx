@@ -2,9 +2,12 @@ import { Button } from '@material-tailwind/react';
 import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import Input from './Input';
 import { LoadingSpinner } from './LoadingSpinner';
+import { loginUser } from '../lib/redux/UserSlice';
 
 export function SignupForm({ setSignup }) {
   const [loading, setLoading] = useState(false);
@@ -91,36 +94,32 @@ export function SignupForm({ setSignup }) {
 }
 
 export function SigninForm({ setSignup }) {
-  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.user);
 
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = async (e) => {
-    setLoading(true);
+  const handleLoginEvent = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      await axios.post(
-        'https://shopping-api-7cy0.onrender.com/api/auth/login',
-        {
-          email,
-          password,
-        }
-      );
-      toast.success('Login successful');
-      navigate('/');
-    } catch (error) {
-      toast.error('Login Failed');
-    } finally {
-      setLoading(false);
-    }
+    let userCredentials = {
+      email,
+      password,
+    };
+    dispatch(loginUser(userCredentials)).then((result) => {
+      if (result.payload) {
+        setEmail('');
+        setPassword('');
+        navigate('/');
+        toast.success('Login Successfull');
+      }
+    });
   };
   return (
     <form
-      onSubmit={loginUser}
+      onSubmit={handleLoginEvent}
       className="flex flex-col items-center gap-6 my-2 xl:my-6 animate-fadeup"
     >
       <Input
@@ -144,6 +143,11 @@ export function SigninForm({ setSignup }) {
       >
         {loading ? <LoadingSpinner size={'35'} /> : 'Log in'}
       </button>
+      {error && (
+        <div className="mt-2 bg-warning p-2 text-white rounded-md">
+          {error}
+        </div>
+      )}
       <div className="flex items-center gap-4 mx-10 whitespace-nowrap">
         Don't have an account?
         <Button

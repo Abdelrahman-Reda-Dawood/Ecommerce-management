@@ -1,13 +1,36 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Header = ({ theme, toggleDarkMode }) => {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    const isConfirm = await Swal.fire({
+      title: 'Sure to Logout?',
+      text: 'You are about to log out',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'yes, log out',
+    }).then((result) => {
+      return result.isConfirmed;
+    });
+
+    if (!isConfirm) {
+      return;
+    }
+    localStorage.removeItem('user');
+    navigate('/register');
+  }
+
   return (
     <div className={`${theme}`}>
       <main className="h-20 p-5 flex lg:justify-between sm:justify-start items-center bg-neutral-300 dark:bg-darkbg dark:text-white text-3xl">
         <p className="animate-fadedown">Good Morning, USER_NAME</p>
         <div className="flex">
-          <Link
-            to={'/register'}
+          <button
+            onClick={handleLogout}
             className="flex m-4 w-9 h-9 justify-center items-center bg-white rounded-full border border-stone-800"
           >
             <svg
@@ -24,7 +47,7 @@ const Header = ({ theme, toggleDarkMode }) => {
                 d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
-          </Link>
+          </button>
           <button
             onClick={toggleDarkMode}
             className={`m-4 w-9 h-9 justify-center items-center flex rounded-full ${
