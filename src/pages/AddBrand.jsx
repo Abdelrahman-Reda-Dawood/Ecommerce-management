@@ -12,6 +12,7 @@ const AddBrand = () => {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
+  const [uploaded, setUploaded] = useState(false);
   const [image, setImage] = useState('');
 
   function handleImageCallback(childData) {
@@ -27,6 +28,7 @@ const AddBrand = () => {
         baseURL
           ? `${baseURL}/api/brands`
           : `https://shopping-api-7cy0.onrender.com/api/brands`,
+        setUploaded(true),
         {
           name,
           image,
@@ -46,7 +48,11 @@ const AddBrand = () => {
       onSubmit={createBrand}
       className="mx-5 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
     >
-      <ImageUploader handleImageCallback={handleImageCallback} />
+      <ImageUploader
+        routeName={'/brands'}
+        uploaded={uploaded}
+        handleImageCallback={handleImageCallback}
+      />
       <div className="animate-fadeup">
         <Input
           title={'Brand Name'}
@@ -56,6 +62,7 @@ const AddBrand = () => {
         />
         <CreateButton loading={loading} />
       </div>
+      <a href="https://shopping-api-7cy0.onrender.com//products/https://www.the-sun.com/wp-content/uploads/sites/6/2022/09/iphone-15-op.jpg?strip=all&quality=100&w=1920&h=1080&crop=1"></a>
     </form>
   );
 };

@@ -15,6 +15,8 @@ const AddShop = () => {
   const [storeId, setStoreId] = useState('');
 
   useEffect(() => {
+    toast.dismiss();
+
     const fetchStores = async () => {
       const stores = await axios.get(
         'https://shopping-api-7cy0.onrender.com/api/stores'
@@ -111,8 +113,8 @@ const AddShop = () => {
           ></iframe>
         </div>
       </div>
-      <div className='ml-7'>
-      <CreateButton loading={loading} />
+      <div className="ml-7">
+        <CreateButton loading={loading} />
       </div>
     </form>
   );

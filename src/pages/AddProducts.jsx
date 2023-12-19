@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-import Input from '../components/Input';
-import ImageUploader from '../components/ImageUploader';
 import CreateButton from '../components/CreateButton';
+import ImageUploader from '../components/ImageUploader';
+import Input from '../components/Input';
+import { fetch } from '../hooks/fetch';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
 const AddProducts = () => {
   const [loading, setLoading] = useState(false);
 
+  const [uploaded, setUploaded] = useState(false);
+
+  const [sell, setSell] = useState('');
+  const [buy, setBuy] = useState('');
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -26,46 +31,30 @@ const AddProducts = () => {
   const [brands, setBrands] = useState([]);
   const [brandId, setBrandId] = useState('');
 
+  const [stores, setStores] = useState([]);
+  const [storeId, setStoreId] = useState('');
+
+  const [suppliers, setSuppliers] = useState([]);
+  const [supplierId, setSupplierId] = useState('');
+
   function handleImageCallback(childData) {
     setImageCover(childData);
   }
 
   useEffect(() => {
-    fetchData();
+    toast.dismiss();
+    fetch({ routeName: 'brands', setData: setBrands });
+    fetch({ routeName: 'stores', setData: setStores });
+    fetch({ routeName: 'supplier', setData: setSuppliers });
+    fetch({ routeName: 'categories', setData: setCategories });
+    fetch({
+      loading: true,
+      routeName: 'subcategories',
+      setData: setSubCategories,
+    });
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const { data } = await axios.get(
-        baseURL
-          ? `${baseURL}/api/categories`
-          : `https://shopping-api-7cy0.onrender.com/api/categories`
-      );
-      setCategories(data);
-    } catch (e) {
-      toast.error('Error while loading categories');
-    }
-
-    try {
-      const { data } = await axios.get(
-        'https://shopping-api-7cy0.onrender.com/api/subcategories'
-      );
-      setSubCategories(data);
-    } catch (e) {
-      toast.error('Error while loading subcategories');
-    }
-
-    try {
-      const { data } = await axios.get(
-        'https://shopping-api-7cy0.onrender.com/api/brands'
-      );
-      setBrands(data);
-    } catch (e) {
-      toast.error('Error while loading Brands');
-    }
-  };
-
-  const categoriesOptions =
+  const categories_Options =
     categories.data &&
     Object.values(categories.data).map((item, index) => (
       <option
@@ -77,7 +66,7 @@ const AddProducts = () => {
       </option>
     ));
 
-  const subcategoriesOptions =
+  const subcategories_Options =
     subCategories.data &&
     Object.values(subCategories.data).map((item, index) => (
       <option
@@ -89,7 +78,7 @@ const AddProducts = () => {
       </option>
     ));
 
-  const brandsOptions =
+  const brands_Options =
     brands.data &&
     Object.values(brands.data).map((item, index) => (
       <option
@@ -101,21 +90,53 @@ const AddProducts = () => {
       </option>
     ));
 
+  const stores_Options =
+    stores &&
+    Object.values(stores).map((item, index) => (
+      <option
+        className="font-semibold "
+        key={index}
+        value={stores[index]._id}
+      >
+        {stores[index].name}
+      </option>
+    ));
+
+  const suppliers_Options =
+    suppliers.data &&
+    Object.values(suppliers.data).map((item, index) => (
+      <option
+        className="font-semibold "
+        key={index}
+        value={suppliers.data[index]._id}
+      >
+        {suppliers.data[index].name}
+      </option>
+    ));
+
   const createProduct = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       setLoading(true);
       await axios.post(
-        'https://shopping-api-7cy0.onrender.com/api/products',
+        baseURL
+          ? `${baseURL}/api/products`
+          : 'https://shopping-api-7cy0.onrender.com/api/products',
+        setUploaded(true),
         {
+          buy,
+          sell,
           title,
-          imageCover,
           price,
+          quantity,
+          imageCover,
           description,
+          storeID: storeId,
+          supplierId,
+          brand: brandId,
           category: categoryId,
           subCategories: subCategoryId,
-          brand: brandId,
         }
       );
       toast.success('Product added successfully');
@@ -132,7 +153,11 @@ const AddProducts = () => {
       onSubmit={createProduct}
       className="mx-5 text-2xl font-semibold flex flex-col gap-4 text-black dark:text-white"
     >
-      <ImageUploader handleImageCallback={handleImageCallback} />
+      <ImageUploader
+        uploaded={uploaded}
+        handleImageCallback={handleImageCallback}
+        routeName={'products'}
+      />
 
       <div className="flex 2xl:flex-row justify-evenly sm:flex-col animate-fadeup">
         {/* Inputs */}
@@ -147,6 +172,7 @@ const AddProducts = () => {
             title={'Product Price'}
             placeholder={'Product price...'}
             value={price}
+            type={'number'}
             onChange={(e) => setPrice(e.target.value)}
           />
           <Input
@@ -156,14 +182,28 @@ const AddProducts = () => {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
+          <Input
+            title={'Buy'}
+            placeholder={'Enter a number...'}
+            type={'number'}
+            value={buy}
+            onChange={(e) => setBuy(e.target.value)}
+          />
+          <Input
+            title={'Sell'}
+            placeholder={'Enter a number...'}
+            type={'number'}
+            value={sell}
+            onChange={(e) => setSell(e.target.value)}
+          />
           <h3 className="mb-1 xl:mb-2 text-black dark:text-white">
-            Shop Description
+            Product Description
           </h3>
           <textarea
             required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Shop description..."
+            placeholder="Enter description..."
             className="text-sm border 2xl:w-[400px] lg:w-[300px] md:w-[300px] h-12 p-3 border-green-400 focus:border-white  pl-3 bg-neutral-100 dark:bg-neutral-600 rounded-lg"
           />
         </div>
@@ -183,7 +223,7 @@ const AddProducts = () => {
             >
               Select Category
             </option>
-            {categoriesOptions}
+            {categories_Options}
           </select>
 
           <label className="mb-1 xl:mb-2 text-black dark:text-white">
@@ -200,7 +240,7 @@ const AddProducts = () => {
             >
               Select Subcategory
             </option>
-            {subcategoriesOptions}
+            {subcategories_Options}
           </select>
 
           <label className="mb-1 xl:mb-2 text-black dark:text-white">
@@ -217,7 +257,41 @@ const AddProducts = () => {
             >
               Select Brand
             </option>
-            {brandsOptions}
+            {brands_Options}
+          </select>
+
+          <label className="mb-1 xl:mb-2 text-black dark:text-white">
+            Product Supplier
+          </label>
+          <select
+            onChange={(e) => setSupplierId(e.target.value)}
+            className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
+          >
+            <option
+              disabled
+              selected
+              className="font-bold text-black"
+            >
+              Select Supplier
+            </option>
+            {suppliers_Options}
+          </select>
+
+          <label className="mb-1 xl:mb-2 text-black dark:text-white">
+            Product Store
+          </label>
+          <select
+            onChange={(e) => setStoreId(e.target.value)}
+            className="2xl:w-[400px] lg:w-[300px] md:w-[300px] xl:h-12 h-10 text-[16px] border border-green-400 focus:border-white pl-3 bg-neutral-100 dark:bg-neutral-600 text-black dark:text-white rounded-lg"
+          >
+            <option
+              disabled
+              selected
+              className="font-bold text-black"
+            >
+              Select Store
+            </option>
+            {stores_Options}
           </select>
         </div>
       </div>

@@ -5,6 +5,13 @@ import toast from 'react-hot-toast';
 import Input from '../components/Input';
 import CreateButton from '../components/CreateButton';
 
+const validatePhone = (phone) => {
+  const regex = /^(\+\d{1,3}[- ]?)?\d{11}$/;
+  if (phone.match(regex)) {
+    return true;
+  } else return false;
+};
+
 const AddSupplier = () => {
   const [loading, setLoading] = useState(false);
 
@@ -15,6 +22,10 @@ const AddSupplier = () => {
 
   const createSupplier = async (e) => {
     e.preventDefault();
+    if (!validatePhone(phone)) {
+      toast.error('Please enter a valid phone number');
+      return;
+    }
     setLoading(true);
     try {
       await axios.post(
@@ -51,7 +62,7 @@ const AddSupplier = () => {
         type={'number'}
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        placeholder={'02-000-000-000'}
+        placeholder={'01-000-000-000'}
       />
       <Input
         title={'Product Type'}
