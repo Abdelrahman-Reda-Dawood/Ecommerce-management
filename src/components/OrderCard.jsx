@@ -14,7 +14,7 @@ const OrderCard = ({
 }) => {
   return (
     <div className="2xl:w-[900px] w-fit h-fit p-5 my-5 rounded-lg bg-neutral-300 dark:bg-darkbg text-black dark:text-white text-2xl">
-      <Link to={'/manage-orders/order-details'}>
+      <Link to={'/orders/order-details'}>
         <div className="flex justify-between mb-2">
           <p>Order number #1</p>
           <p>DATE 12/11/2023</p>

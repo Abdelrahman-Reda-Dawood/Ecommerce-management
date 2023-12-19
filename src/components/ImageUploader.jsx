@@ -1,8 +1,7 @@
+import { useState } from 'react';
 import { Button } from '@material-tailwind/react';
 import { Modal, Upload } from 'antd';
 // import axios from 'axios';
-
-import { useState } from 'react';
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -12,14 +11,12 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUploader = ({ handleImageCallback }) => {
+const ImageUploader = ({ handleImageCallback, uploaded, routeName }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
 
-  const [fileList, setFileList] = useState([]);
-
-  const handleCancel = () => setPreviewOpen(false);
+  const [fileList, setFileList] = useState([{}]);
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -32,21 +29,23 @@ const ImageUploader = ({ handleImageCallback }) => {
     );
   };
 
-  const handleChange = ({ fileList }) => {
-    setFileList(fileList);
-    Object.values(fileList).map((item, index) => {
-      return (
-        handleImageCallback(fileList[index].name),
-        console.log('Image name: ' + fileList[index].name)
-      );
+  const handleChange = async (info) => {
+    let newFileList = [...info.fileList];
+    newFileList = newFileList.map((file) => {
+      if (file.response) {
+        file.url = file.response.url;
+      }
+      return file;
     });
+    setFileList(newFileList);
+    handleImageCallback(fileList.url);
   };
 
   const ImagePreviewMoadl = (
     <Modal
       open={previewOpen}
       title={previewTitle}
-      onCancel={handleCancel}
+      onCancel={() => setPreviewOpen(false)}
       footer={null}
     >
       <img
@@ -62,14 +61,15 @@ const ImageUploader = ({ handleImageCallback }) => {
   return (
     <div className="text-black dark:text-white dark:bg-[#171716] animate-fadedown">
       <Upload.Dragger
+        name="file"
+        listType="picture"
         multiple
-        withCredentials
-        name="image"
-        listType="picture-card"
-        fileList={fileList}
         onChange={handleChange}
         onPreview={handlePreview}
-        beforeUpload={() => false}
+        beforeUpload={(file) => {
+          handleImageCallback({ file });
+          return uploaded;
+        }}
       >
         <div className="flex flex-col items-center text-black dark:text-white">
           Drag files here Or
