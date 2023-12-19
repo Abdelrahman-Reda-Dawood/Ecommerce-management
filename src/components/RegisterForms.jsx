@@ -151,6 +151,7 @@ export function SigninForm({ setSignup }) {
       <div className="flex items-center gap-4 mx-10 whitespace-nowrap">
         Don't have an account?
         <Button
+          disabled={loading}
           size="lg"
           variant="gradient"
           className="flex justify-center h-10 p-3 bg-neutral-600 items-center whitespace-nowrap"

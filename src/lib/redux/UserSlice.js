@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 export const loginUser = createAsyncThunk(
   'user/loginUser',
@@ -11,7 +10,6 @@ export const loginUser = createAsyncThunk(
     );
     const response = await request.data;
     localStorage.setItem('user', JSON.stringify(response));
-    window.location.reload();
     return response;
   }
 );

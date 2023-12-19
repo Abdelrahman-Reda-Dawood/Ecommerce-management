@@ -62,7 +62,6 @@ const AddBrand = () => {
         />
         <CreateButton loading={loading} />
       </div>
-      <a href="https://shopping-api-7cy0.onrender.com//products/https://www.the-sun.com/wp-content/uploads/sites/6/2022/09/iphone-15-op.jpg?strip=all&quality=100&w=1920&h=1080&crop=1"></a>
     </form>
   );
 };

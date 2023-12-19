@@ -3,6 +3,7 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import NotFound from './components/NotFound';
 import RegisterLayout from './components/register/RegisterLayout';
@@ -33,7 +34,8 @@ function getUser() {
 }
 
 function App() {
-  const [user] = useState(getUser());
+  const [localStorageUser] = useState(getUser());
+  const { user } = useSelector((state) => state.user);
 
   const mainRoute = (
     <Routes>
@@ -118,7 +120,7 @@ function App() {
   return (
     <ThemeContextProvider>
       <BrowserRouter>
-        {user ? (
+        {user || localStorageUser ? (
           mainRoute
         ) : (
           <Routes>
@@ -129,6 +131,10 @@ function App() {
             <Route
               path={`*`}
               element={<NotFound />}
+            />
+            <Route
+              path={`/register`}
+              element={<RegisterLayout />}
             />
           </Routes>
         )}
