@@ -11,6 +11,7 @@ export const loginUser = createAsyncThunk(
     );
     const response = await request.data;
     localStorage.setItem('user', JSON.stringify(response));
+    window.location.reload();
     return response;
   }
 );

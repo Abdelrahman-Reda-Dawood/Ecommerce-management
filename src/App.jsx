@@ -125,7 +125,7 @@ function App() {
             <Route
               path={`/`}
               element={<RegisterLayout />}
-            />{' '}
+            />
             <Route
               path={`*`}
               element={<NotFound />}
