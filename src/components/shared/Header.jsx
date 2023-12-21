@@ -32,9 +32,13 @@ const Header = ({ theme, toggleDarkMode }) => {
 
   return (
     <div className={`${theme}`}>
-      <main className="h-20 p-5 flex lg:justify-between sm:justify-start items-center bg-neutral-300 dark:bg-darkbg dark:text-white text-3xl">
-        <p className="animate-fadedown">
-          Good Morning, {localStorageUser.user.name}
+      <main className="h-20 p-5 flex lg:justify-between sm:justify-start items-center bg-neutral-300 dark:bg-darkbg dark:text-white text-3xl ">
+        <p className="animate-fadedown transition-none">
+          Good Morning
+          <span className="capitalize transition-none">
+            {' '}
+            {localStorageUser.user.name}
+          </span>
         </p>
         <div className="flex">
           <button
