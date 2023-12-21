@@ -1,14 +1,16 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import ProductCard from '../components/ProductCard';
-import { fetch } from '../hooks/fetch';
+import { fetch } from '../utils/fetch';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Products = ({ buttons, searchResult }) => {
   const [products, setProducts] = useState([]);
+  const [theme] = useContext(ThemeContext);
 
   useEffect(() => {
     toast.dismiss();
@@ -21,6 +23,8 @@ const Products = ({ buttons, searchResult }) => {
       text: "You won't be able to undo this operation",
       icon: 'warning',
       showCancelButton: true,
+      background: `${theme === 'dark' ? '#292927' : '#fff'}`,
+      color: `${theme === 'dark' ? '#fff' : '#000'}`,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'yes, delete it',
@@ -67,7 +71,7 @@ const Products = ({ buttons, searchResult }) => {
       products.data.title &&
       Object.values(products.data)
         .filter((product, index) =>
-          product.title.toString().toLowerCase().search(searchResult)
+          product.title.toString().toLowerCase().filter(searchResult)
         )
         .map((product, index) => (
           <ProductCard

@@ -1,8 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { getUser } from '../../utils/getUser';
 
 const Header = ({ theme, toggleDarkMode }) => {
   const navigate = useNavigate();
+
+  const [localStorageUser] = useState(getUser());
 
   async function handleLogout() {
     const isConfirm = await Swal.fire({
@@ -10,9 +14,11 @@ const Header = ({ theme, toggleDarkMode }) => {
       text: 'You are about to log out',
       icon: 'warning',
       showCancelButton: true,
+      background: `${theme === 'dark' ? '#292927' : '#fff'}`,
+      color: `${theme === 'dark' ? '#fff' : '#000'}`,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'yes, log out',
+      confirmButtonText: 'Confirm',
     }).then((result) => {
       return result.isConfirmed;
     });
@@ -27,7 +33,9 @@ const Header = ({ theme, toggleDarkMode }) => {
   return (
     <div className={`${theme}`}>
       <main className="h-20 p-5 flex lg:justify-between sm:justify-start items-center bg-neutral-300 dark:bg-darkbg dark:text-white text-3xl">
-        <p className="animate-fadedown">Good Morning, USER_NAME</p>
+        <p className="animate-fadedown">
+          Good Morning, {localStorageUser.user.name}
+        </p>
         <div className="flex">
           <button
             onClick={handleLogout}
