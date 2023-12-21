@@ -14,19 +14,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const signupUser = createAsyncThunk(
-  'user/signupUser',
-  async (userCredentials) => {
-    const request = await axios.post(
-      'https://shopping-api-7cy0.onrender.com/api/auth/signup',
-      userCredentials
-    );
-    const response = await request.data;
-    localStorage.setItem('user', JSON.stringify(response));
-    return response;
-  }
-);
-
 const userSlice = createSlice({
   name: 'user',
   initialState: {
