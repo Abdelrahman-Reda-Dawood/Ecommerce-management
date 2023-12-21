@@ -10,32 +10,51 @@ import { LoadingSpinner } from './LoadingSpinner';
 import { loginUser } from '../lib/redux/UserSlice';
 
 export function SignupForm({ setSignup }) {
+  const validateEmail = (e) => {
+    const regex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+
+    if (email.match(regex)) {
+      setMessage(true);
+    } else {
+      setMessage(false);
+    }
+  };
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const signupUser = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      await axios.post(
-        'https://shopping-api-7cy0.onrender.com/api/auth/signup',
-        {
-          name,
-          email,
-          password,
-          passwordConfirm,
-        }
-      );
-      toast.success('Registration successful');
-      setSignup(false);
-    } catch (error) {
-      toast.error('Registration Failed try again');
-    } finally {
+    if (!message) {
+      toast.error('Invalid Email input');
       setLoading(false);
+    } else {
+      try {
+        await axios.post(
+          'https://shopping-api-7cy0.onrender.com/api/auth/signup',
+          {
+            name,
+            email,
+            password,
+            passwordConfirm,
+          }
+        );
+        toast.success('Registration successful');
+        setSignup(false);
+      } catch (error) {
+        toast.error('Registration Failed try again');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -51,13 +70,69 @@ export function SignupForm({ setSignup }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <Input
-        title={'Email'}
-        placeholder={'YourEmail@email.com'}
-        type={'email'}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="relative transition-none">
+        <Input
+          title={'Email'}
+          placeholder={'YourEmail@email.com'}
+          type={'email'}
+          value={email}
+          onChange={validateEmail}
+        />
+        {email.length === 0 ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            dataSlot="icon"
+            className="absolute w-6 h-6 transform top-2/3 -translate-y-1/2 right-3"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+            />
+          </svg>
+        ) : message ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="green"
+            dataSlot="icon"
+            className="absolute w-6 h-6 transform top-2/3 -translate-y-1/2 right-3"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+        ) : (
+          <>
+            <p className="text-sm text-red-500 absolute mt-[1px] mx-1">
+              Invalid email !
+            </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="red"
+              dataSlot="icon"
+              className="absolute w-6 h-6 transform top-2/3 -translate-y-1/2 right-3"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+              />
+            </svg>
+          </>
+        )}
+      </div>
       <Input
         title={'Password'}
         placeholder={'Enter your password...'}
@@ -81,6 +156,7 @@ export function SignupForm({ setSignup }) {
       <div className="flex items-center gap-4 mx-10 whitespace-nowrap">
         Already have an account?
         <Button
+          disabled={loading}
           size="lg"
           variant="gradient"
           className="flex justify-center h-10 p-3 bg-neutral-600 items-center whitespace-nowrap"
@@ -110,8 +186,8 @@ export function SigninForm({ setSignup }) {
     };
     dispatch(loginUser(userCredentials)).then((result) => {
       if (result.payload) {
-        setEmail('');
-        setPassword('');
+        // setEmail('');
+        // setPassword('');
         navigate('/');
         toast.success('Login Successfull');
       }
