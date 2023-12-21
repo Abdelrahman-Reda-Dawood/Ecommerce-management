@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function CheckoutCard({ CheckoutCardProps }) {
-  const [checkout, setCheckout] = useState(true);
+  const [checkout, setCheckout] = useState(false);
   return (
     <>
       {checkout && (

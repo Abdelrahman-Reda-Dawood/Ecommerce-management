@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 import CreateButton from '../components/CreateButton';
 import ImageUploader from '../components/ImageUploader';
 import Input from '../components/Input';
-import { fetch } from '../hooks/fetch';
+import { fetch } from '../utils/fetch';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 

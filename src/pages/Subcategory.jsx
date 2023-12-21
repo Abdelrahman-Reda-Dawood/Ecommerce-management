@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import Input from '../components/Input';
 import Dropdown from '../components/Dropdown';
 import CreateButton from '../components/CreateButton';
-import { fetch } from '../hooks/fetch';
+import { fetch } from '../utils/fetch';
 
 const Subcategory = () => {
   const [loading, setLoading] = useState(false);
