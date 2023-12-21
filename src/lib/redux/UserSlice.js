@@ -57,7 +57,7 @@ const userSlice = createSlice({
         } else if (
           action.error.message === 'Request failed with status code 401'
         ) {
-          state.error = 'Invalid Credentials';
+          state.error = 'Invalid Email or Password';
         } else {
           state.error = action.error.message;
         }

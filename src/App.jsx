@@ -22,20 +22,13 @@ import OrderDetails from './pages/OrderDetails';
 import POS from './pages/POS';
 import Products from './pages/Products';
 import Subcategory from './pages/Subcategory';
-
-function getUser() {
-  let user = localStorage.getItem('user');
-  if (user) {
-    user = JSON.parse(user);
-  } else {
-    user = null;
-  }
-  return user;
-}
+import { getUser } from './utils/getUser';
 
 function App() {
-  const [localStorageUser] = useState(getUser());
-  const { user } = useSelector((state) => state.user);
+  useEffect(() => {
+    console.log(user);
+    getUser();
+  });
 
   const mainRoute = (
     <Routes>
@@ -112,10 +105,9 @@ function App() {
     </Routes>
   );
 
-  useEffect(() => {
-    console.log({ user });
-    getUser();
-  });
+  const { user } = useSelector((state) => state.user);
+
+  const [localStorageUser] = useState(getUser());
 
   return (
     <ThemeContextProvider>
